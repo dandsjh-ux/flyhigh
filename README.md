@@ -37,7 +37,7 @@ Each mode has its own save (stored in the browser).
 - **Around the islands:** sailboats with jibs and wakes, a fishing boat for rescue missions, hot-air balloons whose burners flare every few seconds, parachute crates with striped canopies, a castle with battlements and a lighthouse with a gallery rail.
 
 ## Reading worksheet (Grade 7)
-`worksheet/from-kites-to-jets.html` is a typeable, self-checking English Language Arts worksheet. Open it in any browser, or use the **📄 Reading worksheet** button on the title screen.
+`worksheet/from-kites-to-jets.html` is a separate, typeable, self-checking English Language Arts worksheet. It is not part of the game: open the file on its own in any browser.
 - **Reading:** "From Kites to Jets", a 15-paragraph article on how airplanes developed and the types of aircraft flying today, with a Canadian focus (the Silver Dart, Elsie MacGill, bush pilots, the Beaver, the Avro Arrow, water bombers, Harbour Air's electric Beaver). It has numbered paragraphs, a four-forces diagram, a comparison table and a glossary, and each section can be read aloud.
 - **Questions (32 questions, 45 points):** vocabulary in context, comprehension and inference, text features and structure, a timeline, prefixes and roots, homophones, Canadian spelling, sentence types, capitalization, fact or opinion, and matching FlyHigh planes to real aircraft types. Students type or choose answers and press Check: they get a hint after a wrong answer and can reveal the answer after two tries.
 - **Writing:** an opinion paragraph with a live success-criteria checklist and an example paragraph that unlocks after 60 words.
