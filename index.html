@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlyHigh</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<canvas id="gl"></canvas>
+
+<!-- ================= HUD ================= -->
+<div id="hud" class="hidden">
+  <div id="hudTL" class="hpanel">
+    <div class="fpRow"><span class="fpCoin">FP</span><span id="fpVal">0</span></div>
+    <div class="rankRow"><span id="rankIcon">🎓</span> <span id="rankName">Cadet</span></div>
+    <div class="rankBar"><div id="rankFill"></div></div>
+    <div id="comboTag" class="hidden"></div>
+    <div id="fpFloat"></div>
+  </div>
+
+  <div id="hudTop">
+    <canvas id="compass" width="460" height="52"></canvas>
+    <div id="qBox" class="hidden">
+      <div id="qTag">🎯 WORD GATES — fly through the right answer!</div>
+      <div class="qMain"><div id="qEmoji"></div><div id="qText"></div></div>
+      <div id="qOpts"></div>
+      <div id="qResult"></div>
+      <div id="qTimer"><div id="qTimerFill"></div></div>
+    </div>
+  </div>
+  <div id="toasts"></div>
+
+  <div id="hudTR">
+    <canvas id="minimap" width="220" height="220"></canvas>
+    <div class="mmHint">M = big map</div>
+    <div id="radarBox" class="hidden"></div>
+  </div>
+
+  <div id="atcBox" class="hidden">
+    <div class="atcHead"><span>📻 AIR TRAFFIC CONTROL</span><button id="atcRepeat" title="Repeat (V)">🔊</button></div>
+    <div id="atcMsg"></div>
+    <div id="atcHint"></div>
+    <div id="atcLive"></div>
+    <div class="atcBars"><div id="atcHoldBar"><div id="atcHold"></div></div><div id="atcTimer"><div id="atcTimerFill"></div></div></div>
+    <div id="atcRbWrap"><div class="rbLabel">Read back — press 1, 2 or 3:</div><div id="atcRb"></div></div>
+  </div>
+
+  <div id="hudBL" class="hpanel">
+    <div class="instRow">
+      <div class="inst"><div class="instLbl">SPEED</div><div class="instVal"><span id="spdVal">0</span><small>kn</small></div></div>
+      <div class="inst"><div class="instLbl">ALTITUDE</div><div class="instVal"><span id="altVal">0</span><small>ft</small></div></div>
+    </div>
+    <div id="vsVal" class="instSub"></div>
+    <div class="barRow"><span>POWER</span><div class="bar"><div id="thrFill"></div></div></div>
+    <div class="barRow"><span>FUEL</span><div class="bar"><div id="fuelFill"></div></div></div>
+    <div id="wxRow" class="hidden"><span id="wxIcon"></span><span id="wxText"></span><span id="wxArrow">⬆</span></div>
+    <div id="planeTag"></div>
+    <div id="timeTag"></div>
+  </div>
+
+  <div id="missionBox" class="hpanel hidden">
+    <div id="mTitle"></div>
+    <div id="mObj"></div>
+    <div class="mRow"><span id="mArrow">⬆</span><span id="mDist"></span></div>
+    <div id="mCruise"></div>
+  </div>
+
+  <div id="keysHint">SHIFT/Z power · ←→ turn · ↑↓ climb/dive · SPACE brake · C camera · M map · H hangar · K cruise · X drop · T smoke · V repeat · P pause</div>
+  <div id="warnBox" class="hidden"></div>
+  <div id="promptBox" class="hidden"></div>
+  <div id="tipBox" class="hidden"></div>
+  <div id="tgtMarker" class="tm hidden"><div id="tgtArrow">▲</div><div id="tgtLabel"></div></div>
+  <div id="cross" class="hidden">✛</div>
+  <div id="lbTop" class="lb"></div><div id="lbBot" class="lb"></div>
+  <div id="cruiseBox" class="hidden"><div id="cruiseTitle">⏩ CRUISE MODE · x4</div><div id="cruiseInfo"></div><div id="cruiseHelp">Press K or any flight key to take control</div></div>
+</div>
+
+<div id="flash"></div>
+<div id="banner" class="hidden"><div id="bTitle"></div><div id="bSub"></div></div>
+
+<!-- ================= TITLE ================= -->
+<div id="title" class="screen">
+  <div class="titleInner">
+    <div class="logo"><span class="logoFly">Fly</span><span class="logoHigh">High</span><span class="logoPlane">✈</span></div>
+    <div class="tagline">Learn English words · Fly amazing planes · Explore the islands</div>
+    <div id="loadWrap"><div id="loadBar"><div id="loadFill"></div></div><div id="loadText">Loading the 3D engine…</div></div>
+    <div id="modeCards" class="cards">
+      <div class="modeCard rookie" data-mode="rookie">
+        <div class="mcTop"><div class="modeIcon">🐣</div><div><h2>Rookie</h2><div class="modeSub">Years 3–4 · Beginner English</div></div></div>
+        <ul><li>Picture words &amp; simple sentences</li><li>Easy ATC: left, right, up, down</li><li>Flying helpers keep your wings level</li><li>Questions are read aloud</li></ul>
+        <div class="saveInfo"></div>
+        <button class="btn big go play" disabled>Play Rookie</button>
+        <button class="btn link reset hidden">Start over</button>
+      </div>
+      <div class="modeCard normal" data-mode="normal">
+        <div class="mcTop"><div class="modeIcon">🦅</div><div><h2>Normal</h2><div class="modeSub">Year 6 · Confident English</div></div></div>
+        <ul><li>Harder words, synonyms &amp; opposites</li><li>Real ATC talk: headings &amp; altitudes</li><li>Full manual flying, stricter landings</li><li>Bigger rewards</li></ul>
+        <div class="saveInfo"></div>
+        <button class="btn big gold play" disabled>Play Normal</button>
+        <button class="btn link reset hidden">Start over</button>
+      </div>
+    </div>
+    <div class="titleBtns"><button id="btnSettings" class="btn ghost">⚙ Settings</button><button id="btnControls" class="btn ghost">🎮 How to fly</button></div>
+  </div>
+</div>
+
+<!-- ================= DIALOGS ================= -->
+<div id="nameDlg" class="screen dim hidden">
+  <div class="dialog center">
+    <div style="font-size:54px">🧑‍✈️</div>
+    <h2 id="nameTitle">What is your name, pilot?</h2>
+    <input id="nameInput" maxlength="12" autocomplete="off" placeholder="Your name">
+    <div class="row center"><button id="nameCancel" class="btn ghost">Back</button><button id="nameOk" class="btn big go">Let's fly! 🛫</button></div>
+  </div>
+</div>
+
+<div id="hangar" class="screen dim hidden">
+  <div class="hangarBox">
+    <div class="hangarHead">
+      <div class="hgTitle"><div class="hgIcon">🛖</div><div><h1 id="hgAirport">Airport</h1><div id="hgIsland" class="hgSub"></div></div></div>
+      <div class="hgFpBox"><span class="fpCoin">FP</span><span id="hgFp">0</span></div>
+      <button id="hgTakeoff" class="btn big go">🛫 Take off</button>
+    </div>
+    <div class="tabs">
+      <button class="tab active" data-tab="missions">🗺️ Missions</button>
+      <button class="tab" data-tab="planes">✈️ Planes</button>
+      <button class="tab" data-tab="upgrades">🔧 Upgrades</button>
+      <button class="tab" data-tab="school">🎓 Ground School</button>
+      <button class="tab" data-tab="logbook">📖 Logbook</button>
+    </div>
+    <div id="hgBody"></div>
+  </div>
+</div>
+
+<div id="quiz" class="screen dim hidden">
+  <div class="dialog quizBox">
+    <div id="quizTitle"></div>
+    <div id="quizSub"></div>
+    <div id="quizProg"></div>
+    <div id="quizEmoji"></div>
+    <div class="quizPromptRow"><div id="quizPrompt"></div><button id="quizSpeak" class="btn ghost" title="Listen">🔊</button></div>
+    <div id="quizOpts"></div>
+    <div id="quizFb"></div>
+    <button id="quizNext" class="btn big go hidden">Next ▶</button>
+  </div>
+</div>
+
+<div id="pause" class="screen dim hidden">
+  <div class="dialog center">
+    <h1>⏸ Paused</h1>
+    <div id="pauseStats" class="note"></div>
+    <div class="col">
+      <button id="pResume" class="btn big go">▶ Resume</button>
+      <button id="pMap" class="btn">🗺️ Map</button>
+      <button id="pSettings" class="btn">⚙ Settings</button>
+      <button id="pControls" class="btn">🎮 How to fly</button>
+      <button id="pAbandon" class="btn ghost">✖ Cancel mission</button>
+      <button id="pQuit" class="btn ghost">💾 Save &amp; quit to title</button>
+    </div>
+  </div>
+</div>
+
+<div id="settings" class="screen dim hidden" style="z-index:60">
+  <div class="dialog">
+    <h2>⚙ Settings</h2>
+    <div class="setRow"><label for="sQuality">Graphics quality</label>
+      <select id="sQuality"><option value="low">Low (fastest)</option><option value="medium">Medium (recommended)</option><option value="high">High (prettiest)</option></select></div>
+    <div class="setRow"><label for="sPlaneVol">🛩️ Plane &amp; sound effects<br><small>engine, wind, rain, thunder, chimes</small></label><input id="sPlaneVol" type="range" min="0" max="100"></div>
+    <div class="setRow"><label for="sVoiceVol">📻 ATC voice &amp; radio<br><small>tower messages and read-aloud words</small></label><input id="sVoiceVol" type="range" min="0" max="100"></div>
+    <div class="setRow"><label for="sVoice">Read words &amp; ATC aloud</label><input id="sVoice" type="checkbox"></div>
+    <div class="setRow"><label for="sDayNight">🌙 Day and night cycle<br><small>off = always daytime</small></label><input id="sDayNight" type="checkbox"></div>
+    <div class="setRow"><label for="sInvert">Invert up/down (pilot style)</label><input id="sInvert" type="checkbox"></div>
+    <div class="setRow"><label>World</label><button id="sNewWorld" class="btn ghost">🌍 Generate a new world</button></div>
+    <div id="sNote" class="note"></div>
+    <div class="row right"><button id="sClose" class="btn go">Done</button></div>
+  </div>
+</div>
+
+<div id="controls" class="screen dim hidden" style="z-index:60">
+  <div class="dialog wide">
+    <h2>🎮 How to fly</h2>
+    <div class="ctlGrid">
+      <div><kbd>SHIFT</kbd> / <kbd>R</kbd></div><div>More engine power</div>
+      <div><kbd>Z</kbd> / <kbd>F</kbd></div><div>Less engine power</div>
+      <div><kbd>↑</kbd> / <kbd>W</kbd></div><div>Nose up — climb (lift off when fast enough)</div>
+      <div><kbd>↓</kbd> / <kbd>S</kbd></div><div>Nose down — dive</div>
+      <div><kbd>←</kbd> <kbd>→</kbd> / <kbd>A</kbd> <kbd>D</kbd></div><div>Bank and turn (steer on the ground)</div>
+      <div><kbd>Q</kbd> <kbd>E</kbd></div><div>Rudder (small turns)</div>
+      <div><kbd>SPACE</kbd></div><div>Brakes</div>
+      <div><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd></div><div>Answer the ATC radio (readback)</div>
+      <div><kbd>V</kbd></div><div>Hear the ATC message / question again</div>
+      <div><kbd>H</kbd></div><div>Hangar (when stopped at an airport)</div>
+      <div><kbd>M</kbd></div><div>Big map</div>
+      <div><kbd>C</kbd></div><div>Change camera · drag the mouse to look around</div>
+      <div><kbd>K</kbd></div><div>Cruise mode on/off (fast-forward to your mission)</div>
+      <div><kbd>X</kbd></div><div>Drop (parachute boxes and fire-fighting water)</div>
+      <div><kbd>T</kbd></div><div>Coloured smoke trail</div>
+      <div><kbd>P</kbd> / <kbd>ESC</kbd></div><div>Pause</div>
+    </div>
+    <h3>How to play</h3>
+    <ul class="howto">
+      <li>🎯 <b>Word Gates</b> appear in the sky. Read the question and fly through the ring with the right answer.</li>
+      <li>📻 <b>ATC</b> gives you instructions. Follow them for FlightPoints, and press 1–3 to pick the correct readback for a bonus.</li>
+      <li>🗺️ <b>Missions</b>: fly to airports, deliver cargo, visit landmarks, rescue boats and race through rings.</li>
+      <li>🛬 <b>Landing</b>: slow down, fly through the green rings, and touch down gently on the runway. Then press H for the hangar.</li>
+      <li>✈️ Spend FlightPoints in the hangar on new planes, upgrades and paint — from the little Sparrow all the way to the Thunderbird jet!</li>
+      <li>⏩ <b>Cruise mode</b>: on a long trip, point your plane at the mission marker (or press K). The autopilot flies you there fast with movie-style cameras, and gives you control back 2 km before you arrive.</li>
+      <li>🌙 <b>Day and night</b>: the sun sets and the stars come out. At night, follow the bright <b>runway lights</b>. The flashing lights point to the runway, and the four PAPI lights show <b>two red and two white</b> when you are on the right slope. Night landings and night missions give bonus FP!</li>
+      <li>🪂 <b>New missions</b>: hospital flights against the clock, parachute drops, water bombing a forest fire, sightseeing tours, and follow-the-leader formation flying.</li>
+      <li>🌦️ After you become a <b>Junior Pilot</b>, the <b>weather</b> changes: strong wind pushes your plane, rain makes it hard to see, and thunderstorms (red on your radar) shake the plane and can hit you with lightning, thick fog hides everything, and low clouds turn the world white. Follow ATC to fly around storms!</li>
+      <li>⭐ 15 golden <b>treasure stars</b> are hidden around the islands. Can you find them all?</li>
+    </ul>
+    <div class="row right"><button id="cClose" class="btn go">Got it!</button></div>
+  </div>
+</div>
+
+<div id="mapDlg" class="screen dim hidden">
+  <div class="mapBox">
+    <div class="mapHead"><h2>🗺️ Island Map</h2><button id="mapClose" class="btn">Close (M)</button></div>
+    <canvas id="bigmap" width="720" height="720"></canvas>
+    <div id="mapLegend"></div>
+  </div>
+</div>
+
+<div id="pickDlg" class="screen dim hidden">
+  <div class="dialog wide">
+    <h2>🗺️ Choose your next mission</h2>
+    <div id="pickCards"></div>
+    <div class="row right"><button id="pickFree" class="btn ghost">☁️ Free flight</button></div>
+  </div>
+</div>
+
+<script src="js/noise.js"></script>
+<script src="js/vocab.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/planes.js"></script>
+<script src="js/world.js"></script>
+<script src="js/effects.js"></script>
+<script src="js/flight.js"></script>
+<script src="js/atc.js"></script>
+<script src="js/weather.js"></script>
+<script src="js/missions.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/game.js"></script>
+<script src="js/main.js"></script>
+<script type="module">
+  import * as THREE from 'three';
+  import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+  window.THREE = THREE;
+  FH.mergeGeometries = mergeGeometries;
+  FH.boot().catch(err => {
+    console.error(err);
+    document.getElementById('loadText').textContent = 'Something went wrong while building the world: ' + err.message;
+  });
+</script>
+<script>
+  setTimeout(function () {
+    if (!window.THREE) document.getElementById('loadText').textContent = 'Could not load the 3D engine. Please check the internet connection and refresh the page.';
+  }, 15000);
+</script>
+</body>
+</html>
