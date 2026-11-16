@@ -596,10 +596,8 @@
       else if (m.airport) { this.beacon.position.set(m.airport.x, m.airport.elev, m.airport.z); this.beacon.visible = true; }
       else if (m.landmark) { this.beacon.position.set(m.landmark.x, Math.max(0, m.landmark.y), m.landmark.z); this.beacon.visible = true; }
       else if (m.type === 'rescue') {
-        const g = new THREE.Group();
-        g.add(new THREE.Mesh(new THREE.BoxGeometry(4, 2, 11), FH.lam(0xe8572a)));
-        const cab = new THREE.Mesh(new THREE.BoxGeometry(3, 2.5, 3.5), FH.lam(0xffffff)); cab.position.set(0, 2.1, 1); g.add(cab);
-        g.position.set(m.boat.x, 0.5, m.boat.z); g.rotation.y = Math.random() * 6;
+        const g = FH.Models.fishingBoat();
+        g.position.set(m.boat.x, 0.3, m.boat.z); g.rotation.y = Math.random() * 6;
         this.scene.add(g); this.rescueBoat = g;
         if (this.rookie) { this.beacon.position.set(m.area.x, 0, m.area.z); this.beacon.visible = true; }
       } else if (m.type === 'rings') this.buildRings(m);
@@ -825,6 +823,7 @@
       }
       c.t += dt;
       ac.throttle = 0.85; ac.eff = 0.85; ac.vs = dy / dt; ac.sink = 0; ac.stalled = false; ac.onGround = false;
+      ac.ctl.p = 0; ac.ctl.r = 0; ac.ctl.y = 0;
       ac.agl = ac.pos.y - Math.max(0, w.heightAt(ac.pos.x, ac.pos.z)) - ac.st.gear;
       ac.fuel = Math.max(0, ac.fuel - (0.25 + 0.75 * 0.85) * dt / ac.st.fuelTime * ac.fuelMult); // fuel burns at normal speed
       ac.animate(dt);

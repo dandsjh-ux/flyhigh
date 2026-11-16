@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>From Kites to Jets</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Grade 7 reading worksheet: the development and types of airplanes, with self-checking questions.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one reading column laid out like a pilot's logbook. Paragraph numbers sit in the margin so
+   questions can point to them; each question is a numbered log entry; a sticky instrument strip tracks progress. */
+:root {
+  --paper: #f4f7fb; --card: #ffffff; --ink: #14203a; --muted: #55627a; --rule: #d5dce8; --grid: rgba(29, 95, 168, 0.08);
+  --accent: #b0135a; --accent-soft: #fbe6ef; --sky: #1d5fa8; --sky-soft: #e3edf9; --on-sky: #ffffff;
+  --ok: #17784a; --ok-soft: #e2f3e9; --bad: #b3261e; --bad-soft: #fbe8e6; --hint: #6f5200; --hint-soft: #fff3d1;
+  --shadow: 0 1px 2px rgba(20, 32, 58, 0.06), 0 4px 14px rgba(20, 32, 58, 0.06);
+  --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", "Helvetica Neue", sans-serif;
+  --body: "Atkinson Hyperlegible", "Segoe UI", Verdana, Tahoma, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0c1323; --card: #131d31; --ink: #e8eef9; --muted: #a3afc5; --rule: #283651; --grid: rgba(134, 182, 255, 0.07);
+    --accent: #f36aa1; --accent-soft: #3a1527; --sky: #8bb9ff; --sky-soft: #1a2a47; --on-sky: #0c1323;
+    --ok: #66d597; --ok-soft: #10301f; --bad: #ff9088; --bad-soft: #3b1613; --hint: #f4d06e; --hint-soft: #33290b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.3);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0c1323; --card: #131d31; --ink: #e8eef9; --muted: #a3afc5; --rule: #283651; --grid: rgba(134, 182, 255, 0.07);
+  --accent: #f36aa1; --accent-soft: #3a1527; --sky: #8bb9ff; --sky-soft: #1a2a47; --on-sky: #0c1323;
+  --ok: #66d597; --ok-soft: #10301f; --bad: #ff9088; --bad-soft: #3b1613; --hint: #f4d06e; --hint-soft: #33290b;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 4px 14px rgba(0, 0, 0, 0.3);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-padding-top: 4.5rem; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 1.06rem/1.62 var(--body); -webkit-text-size-adjust: 100%; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--card); }
+.wrap { max-width: 48rem; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+a { color: var(--sky); }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.08; text-wrap: balance; letter-spacing: 0.005em; }
+:focus-visible { outline: 3px solid var(--sky); outline-offset: 2px; border-radius: 4px; }
+
+/* ---------- masthead ---------- */
+.mast { background-color: var(--card); background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 28px 28px; border-bottom: 1px solid var(--rule); }
+.mast .wrap { padding-block: 2.2rem 1.6rem; display: grid; gap: 1rem; }
+.eyebrow { font: 500 0.78rem/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); }
+.mast h1 { font-size: clamp(2.6rem, 8vw, 4.2rem); margin: 0; }
+.dek { font-size: 1.15rem; color: var(--muted); margin: 0; max-width: 38rem; }
+.student { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 0.75rem; margin-top: 0.4rem; }
+.student label { display: grid; gap: 0.2rem; font: 500 0.72rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.howto { display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; font-size: 0.95rem; color: var(--muted); margin: 0; padding: 0; list-style: none; }
+.howto li { display: flex; gap: 0.45rem; align-items: baseline; }
+.howto b { font: 500 0.8rem/1 var(--mono); color: var(--accent); }
+
+input[type="text"], textarea, select {
+  font: inherit; color: var(--ink); background: var(--paper); border: 1.5px solid var(--rule); border-radius: 8px; padding: 0.5rem 0.7rem; width: 100%; min-width: 0;
+}
+input[type="text"]:focus, textarea:focus, select:focus { border-color: var(--sky); outline: none; box-shadow: 0 0 0 3px var(--sky-soft); }
+textarea { min-height: 12rem; resize: vertical; line-height: 1.6; }
+
+/* ---------- sticky instrument strip ---------- */
+.strip { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--card); border-bottom: 1px solid var(--rule); box-shadow: var(--shadow); }
+.strip .wrap { display: flex; align-items: center; gap: 1rem; padding-block: 0.55rem; max-width: 68rem; }
+.jump { display: flex; gap: 0.25rem; overflow-x: auto; scrollbar-width: none; flex: 1; min-width: 0; }
+.jump::-webkit-scrollbar { display: none; }
+.jump a { flex: none; text-decoration: none; font: 500 0.78rem/1 var(--mono); color: var(--muted); padding: 0.45rem 0.55rem; border-radius: 6px; border: 1px solid transparent; white-space: nowrap; }
+.jump a:hover { color: var(--ink); border-color: var(--rule); }
+.jump a.done { color: var(--ok); }
+.gauge { flex: none; display: flex; align-items: center; gap: 0.55rem; font: 500 0.8rem/1 var(--mono); color: var(--muted); }
+.gauge .bar { width: 5.5rem; height: 6px; background: var(--rule); border-radius: 3px; overflow: hidden; }
+.gauge .bar i { display: block; height: 100%; width: 0; background: var(--ok); transition: width 0.4s; }
+.gauge strong { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+/* ---------- article ---------- */
+.article { padding-block: 2rem 1rem; }
+.article h2 { font-size: 1.85rem; margin: 2.2rem 0 0.6rem; color: var(--ink); }
+.article h2:first-of-type { margin-top: 0.4rem; }
+.para { position: relative; margin: 0 0 1rem; max-width: 65ch; }
+.para::before { content: "¶" attr(data-n); position: absolute; left: -3.1rem; top: 0.22rem; width: 2.6rem; text-align: right; font: 500 0.74rem/1 var(--mono); color: var(--accent); }
+.term { font-weight: 700; text-decoration: underline dotted var(--accent); text-underline-offset: 3px; cursor: help; position: relative; }
+.term:focus-visible { outline-offset: 1px; }
+.term[data-def]:hover::after, .term[data-def]:focus::after {
+  content: attr(data-def); position: absolute; left: 0; top: calc(100% + 6px); z-index: 4; width: max-content; max-width: min(18rem, 70vw);
+  background: var(--ink); color: var(--paper); font: 400 0.86rem/1.4 var(--body); padding: 0.45rem 0.6rem; border-radius: 6px; box-shadow: var(--shadow);
+}
+.listen { font: 500 0.75rem/1 var(--mono); color: var(--sky); background: var(--sky-soft); border: 0; border-radius: 999px; padding: 0.35rem 0.7rem; cursor: pointer; margin-left: 0.4rem; vertical-align: middle; }
+.listen[aria-pressed="true"] { background: var(--sky); color: var(--on-sky); }
+.sidebar { margin: 1.4rem 0 1.6rem; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 1.1rem 1.2rem 1.2rem; box-shadow: var(--shadow); }
+.sidebar h3 { margin: 0 0 0.4rem; font-size: 1.35rem; }
+.sidebar p { margin: 0 0 0.6rem; font-size: 0.98rem; }
+.forces { width: 100%; height: auto; display: block; margin-top: 0.4rem; }
+.forces .body { fill: var(--muted); }
+.forces .win { fill: var(--sky-soft); }
+.forces .up { stroke: var(--sky); fill: var(--sky); }
+.forces .down { stroke: var(--accent); fill: var(--accent); }
+.forces text { fill: var(--ink); font: 700 15px var(--body); }
+.forces text.sub { fill: var(--muted); font: 400 12px var(--body); }
+.tablebox { overflow-x: auto; margin: 1rem 0 1.4rem; border: 1px solid var(--rule); border-radius: 12px; background: var(--card); }
+table { border-collapse: collapse; width: 100%; min-width: 40rem; font-size: 0.93rem; }
+caption { text-align: left; font: 500 0.76rem/1.3 var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); padding: 0.8rem 0.9rem 0.2rem; }
+th, td { text-align: left; vertical-align: top; padding: 0.6rem 0.9rem; border-top: 1px solid var(--rule); }
+thead th { font: 700 0.95rem/1.2 var(--display); letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); border-top: 0; }
+tbody th { font-weight: 700; }
+.glossary { display: grid; grid-template-columns: max-content 1fr; gap: 0.35rem 1rem; margin: 0.6rem 0 0; font-size: 0.95rem; }
+.glossary dt { font-weight: 700; }
+.glossary dd { margin: 0; color: var(--muted); }
+.source { font-size: 0.85rem; color: var(--muted); }
+
+/* ---------- questions ---------- */
+.part { padding-block: 1.6rem 0.6rem; border-top: 1px solid var(--rule); }
+.part > header { display: grid; gap: 0.3rem; margin-bottom: 1rem; }
+.part h2 { font-size: 2rem; margin: 0; }
+.part .skill { font: 500 0.76rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); }
+.part .intro { margin: 0; color: var(--muted); }
+.qs { display: grid; gap: 0.9rem; }
+.q { background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 1rem 1.1rem; display: grid; gap: 0.7rem; min-width: 0; }
+.q.right { border-color: var(--ok); }
+.q.wrong { border-color: var(--bad); }
+.qhead { display: flex; gap: 0.7rem; align-items: baseline; }
+.qnum { flex: none; font: 500 0.78rem/1 var(--mono); color: var(--on-sky); background: var(--sky); padding: 0.3rem 0.45rem; border-radius: 5px; }
+.q.right .qnum { background: var(--ok); }
+.prompt { margin: 0; font-weight: 700; min-width: 0; }
+.prompt .ref { font: 500 0.75rem/1 var(--mono); color: var(--muted); font-weight: 500; margin-left: 0.3rem; white-space: nowrap; }
+.answer-row { display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center; }
+.answer-row input[type="text"] { flex: 1 1 14rem; }
+.opts { display: grid; gap: 0.45rem; }
+.opt { display: flex; gap: 0.6rem; align-items: flex-start; padding: 0.5rem 0.65rem; border: 1.5px solid var(--rule); border-radius: 8px; cursor: pointer; background: var(--paper); }
+.opt:hover { border-color: var(--sky); }
+.opt input { margin-top: 0.3rem; accent-color: var(--sky); }
+.opt:has(input:checked) { border-color: var(--sky); background: var(--sky-soft); }
+.rows { display: grid; gap: 0.55rem; }
+.row { display: grid; grid-template-columns: 1fr minmax(9rem, 13rem); gap: 0.4rem 0.8rem; align-items: center; }
+.row .txt { min-width: 0; }
+.row.order { grid-template-columns: 4.2rem 1fr; }
+.row.order input { text-align: center; font-family: var(--mono); }
+.row.fleet { grid-template-columns: 9rem 1fr minmax(9rem, 13rem); }
+.row.fleet img { width: 9rem; height: auto; border-radius: 8px; border: 1px solid var(--rule); display: block; }
+.mark { font: 700 1rem/1 var(--body); width: 1.4rem; text-align: center; }
+.mark.ok { color: var(--ok); } .mark.no { color: var(--bad); }
+.sentence { line-height: 2.4; margin: 0; }
+.sentence input[type="text"] { width: 9rem; display: inline-block; padding: 0.3rem 0.5rem; }
+.cell-ok { border-color: var(--ok) !important; }
+.cell-no { border-color: var(--bad) !important; }
+.btn { font: 700 0.95rem/1 var(--body); border-radius: 8px; padding: 0.62rem 1rem; cursor: pointer; border: 1.5px solid var(--sky); background: var(--sky); color: var(--on-sky); }
+.btn.ghost { background: transparent; color: var(--sky); }
+.btn.quiet { background: transparent; color: var(--muted); border-color: var(--rule); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.actions { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.fb { margin: 0; padding: 0.55rem 0.75rem; border-radius: 8px; font-size: 0.95rem; }
+.fb:empty { display: none; }
+.fb.ok { background: var(--ok-soft); color: var(--ok); }
+.fb.no { background: var(--bad-soft); color: var(--bad); }
+.fb.hint { background: var(--hint-soft); color: var(--hint); }
+.fb.ans { background: var(--sky-soft); color: var(--ink); }
+.part-foot { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; margin-top: 1rem; }
+.part-score { font: 500 0.85rem/1 var(--mono); color: var(--muted); }
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; font-size: 0.95rem; }
+.checklist li { display: flex; gap: 0.55rem; align-items: flex-start; }
+.checklist .tick { flex: none; width: 1.2rem; height: 1.2rem; border-radius: 50%; border: 1.5px solid var(--rule); display: grid; place-items: center; font-size: 0.75rem; margin-top: 0.15rem; }
+.checklist li.met .tick { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.checklist label { cursor: pointer; }
+.wc { font: 500 0.8rem/1 var(--mono); color: var(--muted); }
+.model { background: var(--sky-soft); border-radius: 8px; padding: 0.8rem 1rem; margin: 0; font-size: 0.98rem; }
+
+/* ---------- results ---------- */
+.results { padding-block: 1.6rem 2.4rem; border-top: 1px solid var(--rule); }
+.results h2 { font-size: 2rem; margin: 0 0 0.6rem; }
+.scoreline { font: 700 clamp(2.4rem, 7vw, 3.4rem)/1 var(--display); margin: 0.2rem 0 0.8rem; font-variant-numeric: tabular-nums; }
+.scoreline small { font: 500 0.9rem/1 var(--mono); color: var(--muted); margin-left: 0.6rem; }
+.byparts { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: 0.5rem; margin: 0 0 1.2rem; padding: 0; list-style: none; }
+.byparts li { background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 0.55rem 0.7rem; display: grid; gap: 0.2rem; }
+.byparts span { font: 500 0.72rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.byparts b { font: 700 1.2rem/1 var(--display); font-variant-numeric: tabular-nums; }
+.confirm { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; padding: 0.7rem 0.9rem; border-radius: 8px; background: var(--hint-soft); color: var(--hint); margin-top: 0.7rem; }
+.copybox { width: 100%; min-height: 8rem; margin-top: 0.7rem; font: 400 0.85rem/1.45 var(--mono); }
+.status { font-size: 0.92rem; color: var(--ok); min-height: 1.4em; margin: 0.5rem 0 0; }
+details.teacher { margin: 1.6rem 0 0; background: var(--card); border: 1px solid var(--rule); border-radius: 12px; padding: 0.9rem 1.1rem; }
+details.teacher summary { cursor: pointer; font: 700 1.2rem/1.2 var(--display); }
+details.teacher ul { padding-left: 1.2rem; margin: 0.6rem 0; }
+details.teacher li { margin-bottom: 0.35rem; }
+footer.foot { padding-block: 1.2rem 2.4rem; color: var(--muted); font-size: 0.85rem; }
+
+@media (max-width: 62rem) {
+  .para::before { position: static; display: inline-block; width: auto; margin-right: 0.45rem; }
+}
+@media (max-width: 40rem) {
+  .student { grid-template-columns: 1fr 1fr; }
+  .student label:first-child { grid-column: 1 / -1; }
+  .row, .row.fleet { grid-template-columns: 1fr; }
+  .row.fleet img { width: 100%; max-width: 16rem; }
+  .row.order { grid-template-columns: 3.6rem 1fr; }
+  .gauge .bar { display: none; }
+  .glossary { grid-template-columns: 1fr; gap: 0.1rem; }
+  .glossary dd { margin-bottom: 0.4rem; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+@media print {
+  .strip, .listen, .actions, .part-foot .btn, #resultsActions, .confirm, .copybox, details.teacher, body::before { display: none !important; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .q, .sidebar, .tablebox { box-shadow: none; break-inside: avoid; }
+  .para::before { position: static; display: inline; }
+}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap">
+    <div class="eyebrow">Grade 7 English Language Arts · Reading and response</div>
+    <h1>From Kites to Jets</h1>
+    <p class="dek">How airplanes developed, and the kinds of aircraft that fly over Canada today.</p>
+    <div class="student">
+      <label for="stuName">Name<input type="text" id="stuName" autocomplete="name"></label>
+      <label for="stuClass">Class<input type="text" id="stuClass"></label>
+      <label for="stuDate">Date<input type="text" id="stuDate" placeholder="YYYY-MM-DD"></label>
+    </div>
+    <ul class="howto">
+      <li><b>1</b> Read the article. Hover over or tap the underlined words for their meanings.</li>
+      <li><b>2</b> Type your answers and press Check. You have two tries, then you can see the answer.</li>
+      <li><b>3</b> At the end, copy your answers for your teacher.</li>
+    </ul>
+  </div>
+</header>
+
+<nav class="strip" aria-label="Worksheet sections">
+  <div class="wrap">
+    <div class="jump" id="jump"><a href="#article">Article</a></div>
+    <div class="gauge" aria-live="polite"><div class="bar"><i id="gaugeFill"></i></div><span><strong id="gaugeScore">0</strong>/<span id="gaugeMax">0</span></span></div>
+  </div>
+</nav>
+
+<main>
+<article class="article wrap" id="article">
+  <h2 id="s-dream">Dreaming of flight <button class="listen" type="button" data-read="s-dream">Listen</button></h2>
+  <div data-sec="s-dream">
+  <p class="para" data-n="1">For thousands of years, people watched birds and wondered what it would feel like to fly. Kites were flown in China more than 2,000 years ago, and inventors drew plans for flapping wings that never left the ground. The first real step came on November 21, 1783, when two passengers drifted over Paris, France, in a hot-air balloon built by the Montgolfier brothers. A balloon, however, simply floats wherever the wind pushes it. The true challenge was to build a flying machine that a pilot could steer.</p>
+  </div>
+
+  <h2 id="s-first">The first powered flights <button class="listen" type="button" data-read="s-first">Listen</button></h2>
+  <div data-sec="s-first">
+  <p class="para" data-n="2">On December 17, 1903, at Kitty Hawk, North Carolina, Orville Wright lay on the lower wing of the Wright Flyer as it lifted off the sand. The flight lasted only 12 seconds and covered about 37 metres, which is shorter than the wingspan of a modern jumbo jet. Still, it was the first time a powered machine that was heavier than air had carried a person in controlled flight. The Wright brothers succeeded because they solved three problems at once: they built wings that made enough <span class="term" tabindex="0" data-def="The upward force made by air moving over and under the wings.">lift</span>, an engine light enough to provide <span class="term" tabindex="0" data-def="The force that pushes an aircraft forward.">thrust</span>, and controls that let the pilot balance and turn.</p>
+  <p class="para" data-n="3">Canada was not far behind. On February 23, 1909, J.A.D. McCurdy flew the <i>Silver Dart</i> from the frozen surface of Bras d'Or Lake at Baddeck, Nova Scotia. The plane had been designed by the Aerial Experiment Association, a group led by Alexander Graham Bell, the inventor famous for the telephone. McCurdy flew about 800 metres, and the <i>Silver Dart</i> made the first powered, controlled flight in Canada.</p>
+  </div>
+
+  <aside class="sidebar" aria-labelledby="forcesTitle">
+    <h3 id="forcesTitle">How does a plane fly?</h3>
+    <p>Four forces act on every airplane in flight. <b>Lift</b> pushes the plane up. It is made by air flowing over and under the wings. <b>Weight</b> (gravity) pulls the plane down. <b>Thrust</b>, from a propeller or a jet engine, pushes the plane forward. <b>Drag</b> is the push of the air against the plane, and it slows the plane down. To climb, lift must be greater than weight. To speed up, thrust must be greater than drag.</p>
+    <svg class="forces" viewBox="0 0 520 250" role="img" aria-labelledby="forcesDesc">
+      <desc id="forcesDesc">Diagram of an airplane flying to the left. Lift points up, weight points down, thrust points forward to the left, and drag points backward to the right.</desc>
+      <defs>
+        <marker id="ahUp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="up"/></marker>
+        <marker id="ahDown" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="down"/></marker>
+      </defs>
+      <ellipse class="body" cx="262" cy="128" rx="112" ry="17"/>
+      <path class="body" d="M352 122 L392 78 L404 78 L386 126 z"/>
+      <path class="body" d="M236 126 L292 126 L316 160 L282 160 z"/>
+      <path class="body" d="M346 128 L392 128 L398 138 L352 138 z"/>
+      <path class="win" d="M176 120 Q190 108 214 112 L214 122 L172 124 z"/>
+      <line class="up" x1="262" y1="104" x2="262" y2="34" stroke-width="5" marker-end="url(#ahUp)"/>
+      <line class="down" x1="262" y1="152" x2="262" y2="222" stroke-width="5" marker-end="url(#ahDown)"/>
+      <line class="up" x1="146" y1="128" x2="62" y2="128" stroke-width="5" marker-end="url(#ahUp)"/>
+      <line class="down" x1="380" y1="128" x2="464" y2="128" stroke-width="5" marker-end="url(#ahDown)"/>
+      <text x="274" y="44">Lift</text><text x="274" y="60" class="sub">up, from the wings</text>
+      <text x="274" y="218">Weight</text><text x="274" y="234" class="sub">down, from gravity</text>
+      <text x="40" y="112">Thrust</text><text x="40" y="152" class="sub">forward</text>
+      <text x="436" y="112">Drag</text><text x="420" y="152" class="sub">backward</text>
+    </svg>
+  </aside>
+
+  <h2 id="s-war">Wings go to war <button class="listen" type="button" data-read="s-war">Listen</button></h2>
+  <div data-sec="s-war">
+  <p class="para" data-n="4">During the First World War (1914–1918), airplanes changed quickly. At first they were used only to spy on enemy troops, but soon pilots were fighting in the sky. Most of these early planes were <span class="term" tabindex="0" data-def="An airplane with two sets of wings, one above the other.">biplanes</span>, with two sets of wings stacked one above the other and held together by wooden struts and wires. Their frames were made of wood and covered with fabric, so they were light but fragile. By the Second World War (1939–1945), most new fighters and bombers were <span class="term" tabindex="0" data-def="An airplane with one set of wings.">monoplanes</span>, with a single set of wings, and they were built from aluminum, a metal that is light and strong.</p>
+  <p class="para" data-n="5">One Canadian engineer played a key role in that second war. Elsie MacGill was the first woman in Canada to earn a degree in electrical engineering, and she went on to study aircraft design. During the war, she was the chief aeronautical engineer at a factory in Fort William, Ontario (now part of Thunder Bay), that built more than 1,400 Hawker Hurricane fighter planes. Her team adapted the Hurricane for Canadian winters by adding skis and de-icing equipment. A comic book about her life called her the "Queen of the Hurricanes."</p>
+  </div>
+
+  <h2 id="s-bush">Bush planes open the North <button class="listen" type="button" data-read="s-bush">Listen</button></h2>
+  <div data-sec="s-bush">
+  <p class="para" data-n="6">In the 1920s and 1930s, Canada's North had very few roads or railways. Bush pilots changed that. They flew small planes into <span class="term" tabindex="0" data-def="Far away from towns and cities, and hard to reach.">remote</span> communities, carrying mail, food, medicine, mining equipment and people. In winter, their planes landed on skis on frozen lakes. In summer, they landed on floats on open water.</p>
+  <p class="para" data-n="7">One famous flight took place in January 1929. A disease called diphtheria had broken out near Fort Vermilion, in northern Alberta, and the people there needed medicine quickly. Pilots Wilfrid "Wop" May and Vic Horner flew north from Edmonton in a small plane with an open cockpit, in bitter cold of about –30&nbsp;°C. To keep the medicine from freezing, they wrapped it in wool blankets with a small charcoal heater. They delivered it safely, and large crowds cheered when they returned to Edmonton.</p>
+  <p class="para" data-n="8">After the Second World War, the de Havilland Canada company in Toronto designed a plane made just for the bush. The DHC-2 Beaver first flew in 1947. It could take off from short, rough strips, and it could be fitted with wheels, floats or skis. More than 1,600 Beavers were built, and many are still flying today. In 1987, the Beaver was named one of the top ten Canadian engineering achievements of the twentieth century.</p>
+  </div>
+
+  <h2 id="s-jet">The jet age <button class="listen" type="button" data-read="s-jet">Listen</button></h2>
+  <div data-sec="s-jet">
+  <p class="para" data-n="9">Propellers have a speed limit. As the tips of the blades spin close to the speed of sound, they lose efficiency, and the plane cannot go much faster. The jet engine solved this problem. Instead of spinning a propeller, a jet engine sucks in air, squeezes it, mixes it with fuel and burns it, then blasts hot gas out the back to create thrust. The first jet-powered plane flew in Germany in 1939. Ten years later, on August 10, 1949, the Avro Canada C102 Jetliner took off near Toronto. It was the second jet airliner in the world to fly, only two weeks after Britain's de Havilland Comet.</p>
+  <p class="para" data-n="10">Canada's most famous jet is one that never entered service. The Avro Arrow was a <span class="term" tabindex="0" data-def="Faster than the speed of sound.">supersonic</span> interceptor, designed to fly at about twice the speed of sound. It first flew on March 25, 1958, and many people believed it was the most advanced fighter of its time. Then, on February 20, 1959, the government <span class="term" tabindex="0" data-def="Stopped a plan or project before it was finished.">cancelled</span> the program because it cost so much. Thousands of workers lost their jobs, and the finished planes were cut up for scrap. People still argue about whether the decision was right.</p>
+  <p class="para" data-n="11">Meanwhile, jet airliners grew bigger and faster. The Boeing 747 "jumbo jet" first flew in 1969 and could carry more than 350 passengers. Concorde, a supersonic airliner built by Britain and France, made the transatlantic trip from London to New York in about three and a half hours. It carried passengers from 1976 until 2003. Air travel slowly became something that ordinary families could afford.</p>
+  </div>
+
+  <h2 id="s-types">Types of planes today <button class="listen" type="button" data-read="s-types">Listen</button></h2>
+  <div data-sec="s-types">
+  <p class="para" data-n="12">Today's aircraft come in many shapes and sizes, and each type is designed for a different job. The table below compares some of the most common types. Notice how the job a plane must do decides what kind of engine and wings it needs.</p>
+  </div>
+  <div class="tablebox">
+    <table>
+      <caption>Common types of aircraft</caption>
+      <thead><tr><th scope="col">Type</th><th scope="col">Power</th><th scope="col">Best at</th><th scope="col">Canadian example</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Glider</th><td>No engine. It rides rising columns of warm air called <span class="term" tabindex="0" data-def="Rising columns of warm air.">thermals</span>.</td><td>Long, quiet flights</td><td>Sailplanes at gliding clubs</td></tr>
+        <tr><th scope="row">Light aircraft</th><td>One piston engine turning a propeller</td><td>Training new pilots, short trips</td><td>Cessna 172s at flying schools</td></tr>
+        <tr><th scope="row">Bush plane</th><td>Piston engine or turboprop</td><td>Landing on lakes, snow or short gravel strips</td><td>DHC-2 Beaver, DHC-6 Twin Otter</td></tr>
+        <tr><th scope="row">Turboprop</th><td>A jet <span class="term" tabindex="0" data-def="A machine with blades that spin when gas or liquid flows through it.">turbine</span> turning a propeller</td><td>Saving fuel on short routes</td><td>De Havilland Dash 8</td></tr>
+        <tr><th scope="row">Jet airliner or business jet</th><td>Turbofan jet engines</td><td>Fast, long-distance travel</td><td>Airbus A220, built in Mirabel, Quebec</td></tr>
+        <tr><th scope="row">Military fast jet</th><td>Jet engines with afterburners</td><td>Speed and quick turns</td><td>CF-18 Hornet</td></tr>
+        <tr><th scope="row">Water bomber</th><td>Two turboprop engines</td><td>Scooping lake water to fight forest fires</td><td>Canadair CL-415</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div data-sec="s-types2">
+  <p class="para" data-n="13">Water bombers deserve special mention, because Canada builds some of the best in the world. The Canadair CL-215 first flew in 1967. Its newer version, the CL-415, can skim across a lake and scoop up about 6,000 litres of water in roughly 12 seconds without stopping. It then climbs away and drops the water on a forest fire. Countries around the world, from France to Greece, fight fires with Canadian-designed water bombers.</p>
+  </div>
+
+  <h2 id="s-future">The future of flight <button class="listen" type="button" data-read="s-future">Listen</button></h2>
+  <div data-sec="s-future">
+  <p class="para" data-n="14">Airplanes burn a lot of fuel, and burning fuel releases carbon dioxide, a gas that contributes to climate change. Engineers are now searching for cleaner ways to fly. On December 10, 2019, Harbour Air, a seaplane company in British Columbia, flew a Beaver that had been fitted with an electric motor. It was the first flight of an all-electric commercial airplane. For now, electric planes can only fly short distances because batteries are heavy. Some experts believe that small electric aircraft could one day carry passengers on short trips between cities and islands.</p>
+  <p class="para" data-n="15">In just over a hundred years, airplanes went from a 12-second hop on a sandy beach to jets that circle the globe. The next big change in flight might be quieter, cleaner and closer to home than anyone expects.</p>
+  </div>
+
+  <h3>Glossary</h3>
+  <dl class="glossary">
+    <dt>biplane</dt><dd>an airplane with two sets of wings, one above the other</dd>
+    <dt>cancel</dt><dd>to stop a plan or project before it is finished (past tense: cancelled)</dd>
+    <dt>drag</dt><dd>the push of the air against a moving plane, which slows it down</dd>
+    <dt>lift</dt><dd>the upward force made by air moving over and under the wings</dd>
+    <dt>monoplane</dt><dd>an airplane with one set of wings</dd>
+    <dt>remote</dt><dd>far away from towns and cities, and hard to reach</dd>
+    <dt>supersonic</dt><dd>faster than the speed of sound</dd>
+    <dt>thermal</dt><dd>a rising column of warm air</dd>
+    <dt>thrust</dt><dd>the force that pushes an aircraft forward</dd>
+    <dt>turbine</dt><dd>a machine with blades that spin when gas or liquid flows through it</dd>
+  </dl>
+</article>
+
+<div id="parts"></div>
+
+<section class="results wrap" id="results" aria-labelledby="resultsTitle">
+  <h2 id="resultsTitle">Your results</h2>
+  <p class="scoreline"><span id="totalScore">0</span> / <span id="totalMax">0</span><small id="answeredLine"></small></p>
+  <ul class="byparts" id="byParts"></ul>
+  <div class="actions" id="resultsActions">
+    <button class="btn" type="button" id="checkAll">Check all my answers</button>
+    <button class="btn ghost" type="button" id="copyAnswers">Copy my answers for my teacher</button>
+    <button class="btn ghost" type="button" id="printBtn" hidden>Print or save as PDF</button>
+    <button class="btn quiet" type="button" id="resetBtn">Start again</button>
+  </div>
+  <div class="confirm" id="resetConfirm" hidden><span>This clears every answer on this device. Are you sure?</span><button class="btn" type="button" id="resetYes">Yes, clear my answers</button><button class="btn ghost" type="button" id="resetNo">Keep my answers</button></div>
+  <p class="status" id="status" role="status"></p>
+  <textarea class="copybox" id="copyBox" hidden readonly aria-label="Your answers as text"></textarea>
+
+  <details class="teacher">
+    <summary>Notes for teachers</summary>
+    <p>This worksheet checks itself in the browser. Nothing is sent anywhere: answers are saved on the student's own device until they press Start again.</p>
+    <ul>
+      <li><b>Time:</b> about 60 to 75 minutes (15 minutes to read, 35 for Parts A to H, 15 for the paragraph in Part I). Parts can be assigned separately.</li>
+      <li><b>Skills:</b> vocabulary in context; main idea and supporting details; inference; cause and effect; text features (diagram, table, glossary) and text structures (chronological, compare and contrast, problem and solution); word study with Greek and Latin prefixes and roots; homophones; Canadian spelling; simple, compound and complex sentences; capitalization of proper nouns; fact and opinion; writing a supported opinion paragraph.</li>
+      <li><b>Curriculum fit:</b> built around Grade 7 reading, language-conventions and writing outcomes found across Canadian English Language Arts curricula, such as Ontario's Language curriculum (2023) and British Columbia's English Language Arts 7.</li>
+      <li><b>Marking:</b> students get two tries per question, then may reveal the answer (it then earns no point). The copied summary shows each answer, the score, and whether any answers were revealed. The paragraph in Part I is checked against success criteria but not scored, so you can mark it with your own rubric.</li>
+      <li><b>FlyHigh link:</b> Part H uses planes from the FlyHigh flight game. Students can fly the water-bombing and hospital missions to connect with ¶7 and ¶13.</li>
+    </ul>
+    <div class="actions"><button class="btn ghost" type="button" id="teacherBtn">Show every answer (teacher view)</button></div>
+    <div class="confirm" id="teacherConfirm" hidden><span>Students: this shows all the answers and is noted in your copied summary.</span><button class="btn" type="button" id="teacherYes">Show the answers</button><button class="btn ghost" type="button" id="teacherNo">Cancel</button></div>
+  </details>
+</section>
+</main>
+<footer class="foot wrap">
+  <p>Article written for the FlyHigh project. Teachers: dates and figures were checked against public aviation histories in November 2026; please confirm any detail you plan to assess.</p>
+</footer>
+
+<script>
+/* Answers are stored encoded so they cannot be read at a glance in the page source.
+   Teachers can decode them in the browser console with: JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(ANSWER_DATA), c => c.charCodeAt(0)))) */
+const ANSWER_DATA = "eyJhIjogeyJhMSI6IFsiYmlwbGFuZSIsICJiaXBsYW5lcyJdLCAiYTIiOiBbInRocnVzdCJdLCAiYTMiOiBbInJlbW90ZSJdLCAiYTQiOiBbInN1cGVyc29uaWMiXSwgImE1IjogWyJ0aGVybWFscyIsICJ0aGVybWFsIl0sICJhNiI6IFsiY2FuY2VsbGVkIiwgImNhbmNlbGVkIl0sICJiMSI6IFsiMTkwOSJdLCAiYjIiOiBbWyJ3aGVlbHMiLCAid2hlZWwiXSwgWyJmbG9hdHMiLCAiZmxvYXQiLCAicG9udG9vbnMiLCAicG9udG9vbiJdLCBbInNraXMiLCAic2tpIl1dLCAiYjMiOiAxLCAiYjQiOiAxLCAiYjUiOiAxLCAiYjYiOiAwLCAiYjciOiAyLCAiYjgiOiBbImdsaWRlciIsICJnbGlkZXJzIiwgInNhaWxwbGFuZSIsICJzYWlscGxhbmVzIl0sICJiOSI6IFsiNjAwMCIsICI2MTM3Il0sICJiMTAiOiAxLCAiYzEiOiAxLCAiYzIiOiAwLCAiYzMiOiAwLCAiYzQiOiAxLCAiZDEiOiBbMywgMiwgNCwgMSwgNSwgNl0sICJlMSI6IFsidHdvIiwgIjIiXSwgImUyIjogWyJhYm92ZSIsICJiZXlvbmQiLCAib3ZlciIsICJtb3JlIHRoYW4iLCAiZ3JlYXRlciB0aGFuIiwgImZhc3RlciB0aGFuIiwgImhpZ2hlciB0aGFuIiwgInBhc3QiLCAiYWJvdmUgb3IgYmV5b25kIiwgImJleW9uZCBvciBhYm92ZSIsICJhYm92ZSBhbmQgYmV5b25kIl0sICJlMyI6IFsiYWlyIiwgInRoZSBhaXIiXSwgImU0IjogWyJ0cmFuc2F0bGFudGljIiwgInRyYW5zLWF0bGFudGljIl0sICJlNSI6IFsibW9ub3BsYW5lIiwgIm1vbm9wbGFuZXMiXSwgImYxIjogW1sicGxhbmUiXSwgWyJwbGFpbiJdXSwgImYyIjogW1siY29sb3VyIl0sIFsiY2VudHJlIl0sIFsibWV0cmUiXV0sICJmMyI6IFsic2ltcGxlIiwgImNvbXBvdW5kIiwgImNvbXBsZXgiXSwgImY0IjogIlRoZSBBdnJvIEFycm93IGZpcnN0IGZsZXcgbmVhciBUb3JvbnRvIGluIE1hcmNoIDE5NTguIiwgImcxIjogWyJGYWN0IiwgIk9waW5pb24iLCAiRmFjdCIsICJPcGluaW9uIl0sICJoMSI6IFsiTGlnaHQgYWlyY3JhZnQiLCAiVHVyYm9wcm9wIiwgIkJ1c2luZXNzIGpldCIsICJCdXNoIHBsYW5lIiwgIk1pbGl0YXJ5IGZhc3QgamV0Il19LCAid2h5IjogeyJhMSI6ICJCaS0gbWVhbnMgXCJ0d29cIiwgc28gYSBiaXBsYW5lIGhhcyB0d28gc2V0cyBvZiB3aW5ncy4iLCAiYTIiOiAiVGhydXN0IGNvbWVzIGZyb20gdGhlIHByb3BlbGxlciBvciB0aGUgamV0IGVuZ2luZS4iLCAiYTMiOiAiQnVzaCBwaWxvdHMgZmxldyB0byByZW1vdGUgY29tbXVuaXRpZXMgdGhhdCBoYWQgbm8gcm9hZHMuIiwgImE0IjogIlN1cGVyLSBtZWFucyBhYm92ZSBvciBiZXlvbmQsIGFuZCBzb25pYyBtZWFucyBzb3VuZC4iLCAiYTUiOiAiR2xpZGVycyBjaXJjbGUgaW5zaWRlIHRoZXJtYWxzIHRvIGNsaW1iIHdpdGhvdXQgYW4gZW5naW5lLiIsICJhNiI6ICJDYW5jZWxsZWQgaXMgdGhlIENhbmFkaWFuIHNwZWxsaW5nLCB3aXRoIGEgZG91YmxlIGwuIiwgImIxIjogIlRoZSBTaWx2ZXIgRGFydCBmbGV3IG9uIEZlYnJ1YXJ5IDIzLCAxOTA5ICjCtjMpLiIsICJiMiI6ICJXaGVlbHMgZm9yIHJ1bndheXMsIGZsb2F0cyBmb3Igd2F0ZXIgYW5kIHNraXMgZm9yIHNub3cgKMK2OCkuIiwgImIzIjogIkRpcGh0aGVyaWEgaGFkIGJyb2tlbiBvdXQsIGFuZCB0aGUgbWVkaWNpbmUgaGFkIHRvIGFycml2ZSBxdWlja2x5ICjCtjcpLiIsICJiNCI6ICJDb21wYXJpbmcgdGhlIGZsaWdodCB3aXRoIHNvbWV0aGluZyB5b3UgY2FuIGltYWdpbmUgaGVscHMgeW91IHBpY3R1cmUgaG93IHNob3J0IGl0IHdhcy4iLCAiYjUiOiAiRXZlcnkgcGFyYWdyYXBoIGluIHRoZSBzZWN0aW9uIHNob3dzIGJ1c2ggcGxhbmVzIGxpbmtpbmcgdGhlIE5vcnRoIHdpdGggdGhlIHJlc3Qgb2YgQ2FuYWRhLiIsICJiNiI6ICJQcm9wZWxsZXIgdGlwcyBsb3NlIGVmZmljaWVuY3kgbmVhciB0aGUgc3BlZWQgb2Ygc291bmQsIHNvIGEgbmV3IGtpbmQgb2YgZW5naW5lIHdhcyBuZWVkZWQgdG8gZ28gZmFzdGVyLiIsICJiNyI6ICJDYW5jZWxsaW5nIHRoZSBwcm9ncmFtIGNhdXNlZCB0aG91c2FuZHMgb2Ygam9iIGxvc3Nlcy4gVGhhdCBpcyBhIGNhdXNlIGFuZCBhbiBlZmZlY3QuIiwgImI4IjogIkEgZ2xpZGVyIGhhcyBubyBlbmdpbmUuIEl0IHJpZGVzIHRoZXJtYWxzIGluc3RlYWQuIiwgImI5IjogIkFib3V0IDYsMDAwIGxpdHJlcyBpbiByb3VnaGx5IDEyIHNlY29uZHMgKMK2MTMpLiIsICJiMTAiOiAiTGlmdCBwdXNoZXMgdXAsIHNvIGl0IG11c3QgYmUgZ3JlYXRlciB0aGFuIHdlaWdodCBmb3IgdGhlIHBsYW5lIHRvIGNsaW1iLiIsICJjMSI6ICJUaGUgdGFibGUgcHV0cyB0aGUgdHlwZXMgc2lkZSBieSBzaWRlIHNvIHlvdSBjYW4gY29tcGFyZSB0aGVtLiIsICJjMiI6ICJUaGUgcGFyYWdyYXBoIG5hbWVzIGEgcHJvYmxlbSAocHJvcGVsbGVycyBoYXZlIGEgc3BlZWQgbGltaXQpIGFuZCB0aGVuIHRoZSBzb2x1dGlvbiAodGhlIGpldCBlbmdpbmUpLiIsICJjMyI6ICJUaGUgYXJyb3dzIHNob3cgdGhlIGRpcmVjdGlvbiBvZiBsaWZ0LCB3ZWlnaHQsIHRocnVzdCBhbmQgZHJhZy4iLCAiYzQiOiAiQSBnbG9zc2FyeSBsaXN0cyBpbXBvcnRhbnQgd29yZHMgYW5kIHRoZWlyIG1lYW5pbmdzLiIsICJkMSI6ICIxNzgzIGJhbGxvb24sIDE5MDMgV3JpZ2h0IEZseWVyLCAxOTA5IFNpbHZlciBEYXJ0LCAxOTQ3IEJlYXZlciwgMTk1OCBBdnJvIEFycm93LCAyMDE5IGVsZWN0cmljIEJlYXZlci4iLCAiZTEiOiAiQmktIG1lYW5zIHR3bywgYXMgaW4gYmljeWNsZSBhbmQgYmlsaW5ndWFsLiIsICJlMiI6ICJTdXBlci0gbWVhbnMgYWJvdmUgb3IgYmV5b25kLCBhcyBpbiBzdXBlcmhlcm8gYW5kIHN1cGVyaW9yLiIsICJlMyI6ICJBZXJvIG1lYW5zIGFpciwgYXMgaW4gYWVyaWFsIGFuZCBhZXJvc3BhY2UuIiwgImU0IjogIlRyYW5zLSAoYWNyb3NzKSArIEF0bGFudGljID0gYWNyb3NzIHRoZSBBdGxhbnRpYyBPY2Vhbi4iLCAiZTUiOiAiTW9uby0gbWVhbnMgb25lLCBhcyBpbiBtb25vcmFpbC4iLCAiZjEiOiAiQSBwbGFuZSBmbGllcy4gQSBwbGFpbiBpcyBmbGF0IGxhbmQuIiwgImYyIjogIkNhbmFkaWFuIHNwZWxsaW5nIGtlZXBzIHRoZSAtb3VyIGFuZCAtcmUgZW5kaW5nczogY29sb3VyLCBjZW50cmUsIG1ldHJlLiIsICJmMyI6ICJTaW1wbGU6IG9uZSBjb21wbGV0ZSB0aG91Z2h0LiBDb21wb3VuZDogdHdvIGNvbXBsZXRlIHRob3VnaHRzIGpvaW5lZCBieSBcInNvXCIuIENvbXBsZXg6IGl0IGJlZ2lucyB3aXRoIFwiQmVjYXVzZSB0aGUgcHJvZ3JhbSBjb3N0IHNvIG11Y2hcIiwgYSBwYXJ0IHRoYXQgY2Fubm90IHN0YW5kIGFsb25lLiIsICJmNCI6ICJDYXBpdGFsaXplIHRoZSBmaXJzdCB3b3JkIGFuZCBldmVyeSBwcm9wZXIgbm91bjogdGhlIHBsYW5lJ3MgbmFtZSwgdGhlIGNpdHkgYW5kIHRoZSBtb250aC4iLCAiZzEiOiAiRmFjdHMgY2FuIGJlIGNoZWNrZWQgaW4gdGhlIGFydGljbGUuIFwiTW9zdCBiZWF1dGlmdWxcIiBhbmQgXCJtb3N0IGV4Y2l0aW5nXCIgYXJlIG9waW5pb25zLiIsICJoMSI6ICJTcGFycm93OiBsaWdodCBhaXJjcmFmdC4gS2VzdHJlbDogdHVyYm9wcm9wLiBTd2lmdDogYnVzaW5lc3MgamV0LiBQZWxpY2FuOiBidXNoIHBsYW5lLiBUaHVuZGVyYmlyZDogbWlsaXRhcnkgZmFzdCBqZXQuIn0sICJub3RlIjogeyJhNiI6IFsiY2FuY2VsZWQiLCAiQ2FuYWRpYW4gc3BlbGxpbmcgZG91YmxlcyB0aGUgbDogY2FuY2VsbGVkLiJdfSwgIm1vZGVsIjogIkluIG15IG9waW5pb24sIHRoZSBidXNoIHBsYW5lIGhlbHBlZCBDYW5hZGEgbW9yZSB0aGFuIGFueSBvdGhlciBkZXZlbG9wbWVudCBpbiBmbGlnaHQuIEluIHRoZSAxOTIwcyBhbmQgMTkzMHMsIENhbmFkYSdzIE5vcnRoIGhhZCB2ZXJ5IGZldyByb2FkcyBvciByYWlsd2F5cywgc28gbWFueSBjb21tdW5pdGllcyB3ZXJlIGN1dCBvZmYgZm9yIG1vbnRocy4gQnVzaCBwaWxvdHMgY2hhbmdlZCB0aGF0IGJlY2F1c2UgdGhleSBjb3VsZCBsYW5kIG9uIHNraXMgaW4gd2ludGVyIGFuZCBvbiBmbG9hdHMgaW4gc3VtbWVyLiBGb3IgZXhhbXBsZSwgaW4gMTkyOSBXb3AgTWF5IGFuZCBWaWMgSG9ybmVyIGZsZXcgbWVkaWNpbmUgdG8gcGVvcGxlIG5lYXIgRm9ydCBWZXJtaWxpb24gZHVyaW5nIGEgZGlwaHRoZXJpYSBvdXRicmVhaywgd2hpY2ggc2hvd3MgdGhhdCBwbGFuZXMgY291bGQgc2F2ZSBsaXZlcyBpbiByZW1vdGUgcGxhY2VzLiBMYXRlciwgdGhlIERIQy0yIEJlYXZlciB3YXMgZGVzaWduZWQgaW4gQ2FuYWRhIGp1c3QgZm9yIHRoZSBidXNoLCBhbmQgbW9yZSB0aGFuIDEsNjAwIHdlcmUgYnVpbHQuIEFzIGEgcmVzdWx0LCBtYWlsLCBmb29kIGFuZCBtZWRpY2luZSBjb3VsZCByZWFjaCB0aGUgTm9ydGggbXVjaCBmYXN0ZXIuIEZvciB0aGVzZSByZWFzb25zLCBJIGJlbGlldmUgYnVzaCBwbGFuZXMgZGlkIHRoZSBtb3N0IHRvIGNvbm5lY3QgQ2FuYWRpYW5zLiJ9";
+const IMG = { sparrow: "data:image/webp;base64,UklGRpISAABXRUJQVlA4IIYSAAAwcgCdASrAARgBPnk8mEokoyIho1MpoJAPCWVu/HyZjujK55J7rqMWwL5P8e80Sgqx96mf0f/yPcF/SLp3eY39pP2u9730qf6r1AP67/ves39ADy3f2c+Eb+x/8b9uPbL1UiQ9uDYL/mtsHvX+OGoF+N+KbGf6BUEfnnm6Tm/xthPoAeT//qeUvUT6aQzPdQy5jfRe6hlzG+i91DLmN9F7qGXMb6L3UMuY30XuoZcxvovdQy5jfRe6hlzG+i91DLmN9F7qGXMb6L3UMuXojV9FxHCRyM8caYeiWZgH18h8FDdD7RZSVtn8qgOyoZfzxSzN8zEY7QPaz70O08b6L3UMuY31uIbX6Oph2s2/ouCmePEyzApasnCtt/wFMcJkQMVCS0/7rpE7nKmP4EuBaI0v2VLJCjoJaK6xKhlzG+i91C7NCj1PsCsOaiETNk9CW82VJF2U/LmdqtYKAc024rkSDmAIyxY5W1B0t5PrbkLNfRdTmkLlxpWmhv1EAl+BXjRYRpVUhYO4emJjeHWlUdu2YRXCPW/h3XHRk2QQsB+3orzwnCP+N0ySEv6ZCQOSk93JX+4QaHO1P/Pm6VOTGrcxF6S/gOckYx7i9mNssRhLTBUPp6Dfa8koGPpqZIhIn9Dr2WV54ZMQSkUjPHGbuJDDy/QxXbEfY0A//PIwjIj1Uuglf9+28B+l+N8WcP/8mAR2jyjT+YaB5hidsE+rudTc5OHZGd7w4T78TfNRu5oHhAB6xtUON6V1VtCt7f/gp8dneKB4a/YALOGGfmHsCVnVaPxUb/CG9U+k6xT6ftjfRe6S0V57v3rN8ygjMxY1YIRdcPzjP9bmIS9sHBHIXoZNA3W0gIwHZIhe9wCqvHzxqZWpLGrcLkcCrr9S6fWm7IhDWJiG5TsSifN/fovdQvyn1DAVTK//r2xu3HK1qMKMXPXMX/1CkW1d2rxkDaJBwuMqblY2oKI011KkAv67OQujtqFBtW1RHIKfy9fqv/Z6x1ZAlQ6YnhrlWr1tehCogtSYnNXU1S/2spxJlrfrq1nwZZYSodMTG+i90R7N4i8r29yulQ3aWnkOgrEgBQJUOmJjfRP4+22W9USofPa+ap5SeXDKdzTmpiErqEEaBiY30XuoZWO5C4mvM7YFHhHZnV+IPdv/2ihO+V60e/YFKPAIsw6R3/mEid83qR0qHTExvGPv33JMPKBo3auxubtMZo6yo8bI8tAg4zIAAP7/jTbCM3a7x0BwAAAAAAAAAopKZSFXYm6uYC6Jb8Hhp6Pv3t1xLFeipA/ny13H6v2a8dzrlVkpWG2CWflg8oYgegEpkkV8OPs9jLBF8xPGoQq1H9UD7b3wE4unlkKjhLgKfvc+TDkAU2cKCJE6S3RLloIZr7/RXze2sDIOXH2MKyM+4qMXXm3vsN/vAzDUpjv6/dh+HRXOdCG8eUPrGu2HOC+xAXJbL5vXa5UZSc/9GhAa54JBPaHmWwLFoNRtIflKCwUWm8TG6Rm3vNXSM5TcwrC5FhUKBUJAkEg1ScHETjIFdz9VPrvw7yXa52/mddOGZH49a7LI6XLkTY5rXW3CNxu6c43Ttgu3XdyjXT+2HcWH2UG9Dk9U25Y/OVI4MMMMqRJ54sB3nkPooVWAgYEvO/Nnmo5NF6X0YnVjXyU35xsvz5ufJ/WV6TpT283CTMnfCtApvKAxLsjychoInOjlSybP/eHPTiijc72LmdGOZKhtjyQIC73s1Bz/4qoJDe+p1BznsBUiaAq0t780It+Rb1+iIG/00LLvTGj4vF7hNG1x6fHpGHGTvSU6lBkijCY5oR+T+l79wjn1A6yU3MLvtbzO9OhF36/5+RNHhb5tkPjWKirLIKnq/G9i5VEM/zPMusc4jt5yJB26prMJbQTsOgpehS7BkHtfNH71GXij5ZEIpeyOVRBUtT76/0B7YYZemMY5rkhIoDzMnK5V6rCdudrBw4NPhboZJTMcrANUgdnkU3puRkh8HdprRl5/grl08f/19/qRI2Bzg2HFiME7hIGExHldax6WqcQtB3hnPvv87Ek6F3wPdPOc6FuO4DO+lgvn2r7IqYOoQtv4UvxoKmA2eyiwNkGUieODf5148Vy+o7V2QNKdVPGxl/U2aeptVEOKW639oh0kImlVbqeL6Z1/1SrUCSnwAb/0DfJqA66gg/5eAD6dXuLRXfXMv+eNoOxxiijgG67gk+qe0eB6uGuMNkuUWxIno8+3LvsvipwTeiqp4pYU/seQYut/8vSm0YpYRR642ylOx6dJtq5b+equzUDrZRZmINHg/b2gU9+yc3ec9Zyfato14D/xdrS4tJ7LeHHyThJpispaZZzLuyfB8WOzN2Nd5rfR1EBelOO4KfQIJX6hsiTuuJbE3q4xghQ+fKeEzLlfJJ5hsF/WdC147LvVeFLSjoMJsrpKy62d1IsONalZK4Yo0/DSg42EM0rYbn4a+7OGAQs/djM/7LhJyLmU7r98HMEAlm/hh3xNGGQZwLt1kmEo89adMK4Kw1jHMq1/GaBo8b1ZOu+7uDj8LUaHwRXPkruhWW7aeWX5qsgqAM+Hwsh1vSOywrzonXxvChHc+CFx5E0hjQf68fEgvDspk8db+FCrrhh5EGJ5noQbByHRY/CdfTH4dnw2rFqzaPI720Tze9ljT3b8+5HNL2Q/hBGWQ5LMr4W8b330vusfBaI03wGIBVH6S2Gydw7kmdW6j02VnlzAbAvRTUIqGCiUfWTE8m4tiRReFJJY0SrgYLByh7nnIPobTgMPbmecOrI/EIfyJB3W6DyVPCE1Uj4B2yPfLutrP3fDeSJSNRL/23z/6VrWq/JDb/aDwZVA65oap4ix6Xzu/eiU2u1j70QpRoO7HFSMnHkZ5HKZFIytZbV3NK6xBupzKsTU1vHQHK4Vpr+ijTL8xwWoTrRTdHBnIOGom3rKz+xD1XAueBPZB8pFbEVYYyAk2Oy+2gFbaGj+CtHKSe0gbh/kgjG/tYmm9jmvGpQMh35/L0C+z65zwhMYypKC4vIz7a9QvtLLbY6ZNsoUIeGEo3ZSNZn12s78yyDchZsJaMeQdXr68zim7+fbzZ6ObmUEeAzUf7IZiTzQb0QM+9DT/wLP0cGdSRHHOIwRNu+N9gNIOc6sjqGEQPvOYtQ78zNSjIxmre9/4cv/gnI5oh9/m2e2in1VZTkNHJNBrtowSF+2kvlsOziAvgndrgeKHjcHP5IAxrV0cVbPNs85EJhb9QX8ExJZgiO4TVRL9Kc/QMMHa7IqqEgMM8LwbnCIIGkOWWcM5x7rfeZ3BqFaWDzO1vOd1uZd7oQ+rM1nhZDSUnUOB35mDrwxopaYq1XiJ55N07V+s+NBc3ya8FxgWzFvhS27/DVAHQtm81TmAgYt9uvDPhwztPuD07HFd+idoZAtanBhi3+hGb1L+5VL+f03c0msSaLtmSWH0tLLd3eUZKqAL8h2wrZOAtQ/QUODErc5X4PuztP0hSFoBVmiu/WvlTnaBoRAQzUoVnKzR/uuelewYCt2awYg/zuu/rrOaqn93c3tW6GOE1B6OF7E5BU9ebw+q4koRxuS+OVPaRAPvq1Ihqpy5VNeWAXvwwNU/uXRCGK09JFrS+RKKbfmv+PYyUwy0gCXgbujXzj5l6Pzdjnl8EiOkAh+uHTCSCS5p/OFaB+plr7lj19wYyBWU8fMOA29b+msC7Y0nXkUJ4IwQI01kaXjZY+nmabtOvGpyVkXEBnjj/WsXjnmpsN43OOs6ar2Mdx6GhH5yKb/I6ne0IB7nao9uCDWUVkDCCH0KNe++NFD/9q3xyLyTw1vg4yYPJMoWxXDR2We5mBWbiHRp4CrXpd6zDq23gRMcx5oQBVUq0iMeKFBjcL5MQGgVtBgDUhIEE2HFHvDiAOcWsr/TJmo5/2PMpl4+LuOAtYQvFsYxwlwuLvnYWMBAT5Gg7vcYDVWFaNGJsZc00MOWxf6tC9rysZcyFpTymSZlWk4xdwjLZH6gzsWuhsHIP9mlImDDAa2A8flIZ+ac1mHAE4mU/i8G8JaY4pe0YLfYjtLMi4ATz//BBJEQiXekZCk+IFRq57PltFl32U9yFfDT1cRwZSCGEfDkpoSz2aICm1pKdOTlAnOCuFekldtkPtg3xqzFQbK0Y8DgYOc4zOPm0w9KyG83YBe+y8120DTx9YO1YPPtS6teKfgeaKYzBbqf/hkE07EY3GpQLklPm6KcwWF3YiNIWVZU4VAoosbZXoEAIMtOhCFYtbUZI2H4sYXc2H6HppX6Bwxff1F1lVXR2ndu3p2xrmQiI07GppnS2AT3zbfrqMoDDhHKtLM/gjoZ+Eg4edk8EeuLkQka3XHmHgAAAATExMOBhjZV8z5tWbDyTjT02o5a7mPbS6W/uD7dIAkaJePodlps6asDNp5yetekwTskjtXm/ryEU/AmDO5Q7mc822PA4kgWfoIsmiMShA2zxwc6Gj0oX0lkLVkqp1w9Hy6DQqNtZ3OwZpb9b9Bg+FlgSmL4mqgpU3rPOsHDyBQ4Uowm2KaTN18K0Sg7HO3OQR77P4deTIl3DrCZ1xtN7H71UU1XO/CFfFcShPeSl0Zzk+5iUBlhbcu7Fpe5gkdHcXsfKenYkwHs/fY73tTmXpTVG46kb+aCbFeUr4YsMh3CR16yYJgAPxYhaBxKKQRletNGQshQmLCidwnalx4yqu6puQEx2uTSJngHK/WJzVGv/ZbokZRce0xqzsIqR/A9TDuroS1H7+4xjqV4i1Ut5fbiImELp7cDCXyAMCSHaH3x699YzoWMJB4GKr8MTQxI+KnnjGamOr8ILB0HnTSUGiiodx/KZR66FmrY9XSKb0SwD9gsjH+v1LOMLfNhHNax3P6d+lLDLLfHNYe4iRjDq4gN6R8/P0Q1ynw8WPo38vy9RhXDioUCz0xokLjvXeUwt1lLX7VuZn32kk1WWE/55p9RqcPsjzJqDvdjiVHrAODVQOwdHudx6WhrlBqFXhW8RLL/vrBfNTLQGFk+3b5cpn4KyO94e/KEj6dMxMcXkvAcpQaFVeFad5Lneu4m68nNTcw3h3NdQAf0TRmrCXbKE1nE4juLB0aFOlKrD+d0FFza4H3JZ4tpQLn0Uh/z2C48ROphsiLhVSaP5O4V5kiHT1YlKlUwdeXX736oC0acuF0hK+7hG/PN3T1iSCdsR2oMMCPoNdvzkr3HbPgQKeCjZqDfpvKmR2Pw4S8H+kdsoOX3IqUIXd0HOhZnFhCWHOsZI/1dI1rtmAzu0WTWgltosZqTtTikOr0mK08psq43ycrV/Qs2Qt/dtXlyCrOqTMd2TSujadi8oS5alIdaBnrVIwI6Us56lt1G/r+HUQhCTy9tJhL+bvMJMV/ocKZiLzPIiMmXcW11CRQozbN1Hidr0OSGNsLZWPXQ8xP1qptADckxN0OHzuwOwMDyMiUb2l79LQqNd39vplj8X0517rOO97Hxkt/hZbF4RZ/kEjXSSfeV5+2rESHDJ1Bm8sfQYqsT+EDFfc/z1eeeGAMk3yEo+BJ6vs/FTcYdca4CaZKEc38ZZu7QRK+VqPthypsUmlhnk4X5j46C1Oca+85b1QfVp83VUNhqKqXTj/RktQV6nWn6RY+ldhXfAq7zIW6KFrVtqMXl+kJLaum4m62tO/nbLUSy3fDCl8ThY3dIEUozJMGNibl5PTbpp/3W4/uH45c7oT8PJ7NA1aFRKLIJj85rEKV/gpvPvUOB9diZQx05xfxQZl5vL83zLbOh5PMCin+XBEn1SWf2U3K3xC1MyR6sOuowQSmWITNFtSXEVXJjElRh0ZJ6rMIgW9lxlxQVIxMK3GpQsBvSHlSieEf/lm85mRgNVzMfI/sZ7PHTZGKmpKUmld/CnD/cJyLZ0lXTMKVrL0Fh87+IS417f2HLnBdWaEnyQA2oo8Y0/KrWAVG03y9Ef9mkrBbuMcRnNgKYwZqH1UKcqdBnFJ3Kr1L1Ziy20Cxjk1kA1v6nzsG+S04QwYDzlL8vQS98HCwC/YKed7+7yUBHtobP+EeiidU8EvZHi3F8aFffggouVf6REx1FYibVoAiHg+v3fml35Zn+VzJpxb6RUr0EXrju4dq7xUTGNCoorwPtCetce16dee54EzOgGyJU1tJTGFNq6s0IUI7bhD+WkTwE9QAkWGb8SV/fMTG7HRZbLuqdDX69cirZTl26YHXlOpYrPi5f3Tk757qxAZYbAAIDu981dVYMq1h5XUZ1LJdNOqzoSZpeIwVIVUKAaxcZmNUxTtbtOyP8zMDlASu8dG8qOll0ab2NEaxcHwvC10/Ny0jvxjdhJjYxF8yC3gBYWNBYBVAAAAAAA==", bluebird: "data:image/webp;base64,UklGRmARAABXRUJQVlA4IFQRAADwaACdASrAARgBPnk8mUokoyIho7JJGJAPCWdu/HyZUL0HKaqwb0g/d+c/yT2ie/dQy9Q8w997j37M+4r83+wB45PrQ/rfoJ/on+h/dD30PR1/ufUA/1XUIc/h7OH9r88fr/+kH7S9pPgb5u/km7TfH+d8Eer/vT/J/23xZ+cd9B4Nmg+GRoh4mf2Os40APGf0bKiYogcCou8aVvQS3RUMKLK3RUMKLK3RUMKLK3RUMKLK3RUMKLK3RUMKLK3RUMKLK3RUMKLK3RUMKLK3RUMKLK2U+O2iyt0VDCiyt0VDCgcA7zZRsB9ZN7joqGFFlboqF7ujWeJke7reBmrQc9d2mmSCNxT8OBUXeNK2lHL5HqKFFi0M+lgSGJrCjYgNdMYmVO5vQW6+l1tEWP95yeKjJ23r+oMiXiqn2Oqx4WQLc7rcbsl4nsfdS9Gb4Cxw971egu8aVvQPkbEPmXrOf4xaGCbMj+F3F0tTYDzdlE37CFuImH04Wf47Of+m0h8zg3t5j8ns/94gP2WG75wFr6AloaG/l0VDCiyqHAVjbNxh/ZpqD7Y//4XfnoMTr2ubikn/Sx9//hNrJ5/+6/WSXmKx/qjRIhIB/UQJOnsregluh6eFbCQ/bNe+WLkYn54rOgbTX/EPm//vASuv/kvtNUhRff7sESopjx8xOXhufUQzirttCc9A9EH8pmClC7fF4WT0OIkrRL+f/LqIjDL/5LdFQwfyfU4BZrVeK6Bfi57YPt+MWtmfhWolxjetjjeGCgayji68WEuUI4Jl7bYPJdRtRXUurhpwhNUhH/1/lhO3p65SPxQpraGLeK0Ju3az6cjJPkoA6KhhRZXd+4FE7Kf3wvvlWqL6kqASVq3NfzTiFw8mY28GugSaBo9F9Uc8nEBkANql29BLdFQwoHamu/qEHf/60xQxlHUgZcsMClks/MTf5Y0regldhGoT0nOCe0GB/xg6/TdI1Kk3gdr2TYZ9Fz8Y2N1wMmejO7jtdtlhwTpqiLK3RUGACR/EFY6cCs8JJF/0xsXXR/EZOAVQprOmIbiEx3Cc+IMNSZKbLGlbz6t16YBSbR/CLp3Lv+r7JC3RUMKtQjXTWr50NgvdFQwosqrVMDERZW6KhhRZW6KUAAD+/z4tn9MrbkspJwAAAAAAAAH7qX0AF8RCZKTUteVYty1I2ZAhasSd8Gs5Urf3jsTU2lgF4E2lufNMTcwlArRik9VtNX3pwuJyAhwk65QSeos30e+jw/PHrWbCZLnTQHPjc90uL93osJ1hfBeNAbZptP1lMt+aLhc/fkIZDqkouCMpvzEF+DyfiJx0/cwJ9DNLL5p74iI/JWANci8sIBHS6YgoUFtPahegedy0YDuc/U3/4rTthYXKnKwernSUupjqxHwOGtaUj8xZJMg70GxEP067Rge/LeY248GeJ4ylW/VkAtPKF639MHa9N36lZfhE22/lij1kcoSKlekJvF5F4ddaSS9Vxo5tMBCDr+xkHWEgiqOuGabmy/tzocMyyAhEcc5KH/f55jAYz1ZW9k52rvbBAkUNNkICGsz/x/3F//zTGrrKTRjqdbajZfCVvUWphNuFqp9qKXRTcw6T5WAN5osx+7To5pf5zCCEqT1oCzi4Eic07iHsaIjrl2YZXRY9pOEMMLO/+24yGwvdCyTKXPuOT5rHoTDFbCNIyNpqvS6WQx5Pr7Z//LnlmM8okpVftA77r6SRFPkBDT9/gj1IZDlRVsM9CuXsf1YHYKwTvk5ROv2ElArc/h3kXj2Zb+bpaQ8+sra/BcKZcfbu/2JPBu2Kc5f3fM/UrhTuPTD4NxdxE5PT9dw4cw4Z7dP95okHz/2B+WsaYo9CKI9KFlwW4RjUlsD0zFy4RTrS0/YNzKE1b3Zrwu4u80A2kM18c8NqwtY+9UwzOfcVgtMflCTxPFWACDzw2FPE1mPN7QmvtH4/APnxGutYM/5TrZbAP+Y6G5+jK1yPfteHt5+4yQO6Po4OTOxNquNXAmSoBVNBmDsOFnqat+W1me0xp3bqizUvvFq3sAW1+5m5fEgupqREHOF8Wb65SoWyqbZG4W6ESACp6vPAyBxxhBo06Sg6d37e8eYrAqMZ/JK0vHuzt6DsSwAby/RcDqs+ereX0QynqPzRHOlPEGasuz7oMx7loZjP1fC1zJRz0YQ8hFa4h50G6zWI6l4ySA+qiEhjWVKI1GdpK/TKqnJPcXXJ/caExYZtONvPc7i243PTOhzIgwenO0PD/EzuxcAfyA4GSAajwZc85TX+YDzb2n0NREu8Mhx9yOKmltJ/e0Bgav9KpYLDDv4bxFEodgcHpCrCTza8pD7Qs1mM2/ZeqLLTTHtsesnp+aMgSELUe4/sOTdpMwmMv464FbMsuwXYKT6by7H+Tg3X4Xk9e9XfvcK40e++u5WQv1ZjO4Ynov2lbF8LszL+Y6x6zXt8FK6nE+XHLMqvnmFLsyj60+kTdkKm6feRIcOYLhnlaHxY3bW6u2xmwEgCd8hB44FQHFn//MJDeJJ6bfeTC3XA/qkY3b4eVOaA1G+8MeAiUZRwEYBXcSKU9Q0mtaeaFMJjv2Ba4kdZ0/DhI/dbajM+pjfpoMjmWvaO4dTa9XIboB26w5e6r8X3q+Hb2WqUKPR5mTss8ZnQ6m6J0EqohxlC1Nsn7cFPk4Df5npl6lWpcvNmPn1gbiQtnPHyaVa3hYKv6itoBGK4WVuMFgWFLRQ2Ey8Qlqp7OtCr+ZQXM+t0FoB+iABSiKWCz9nUpcdnORBg9xKBVM00LFUiK0eSQGecERWRhFXofJkqYWnFtD3Uc0/A7yJLzTgpTwx+d7+zeG90+WjmsUeoRgFGhDfSRX1ehKcGwkVVYDT4K32xS+pppnZjD9IZa4xJ800kvfQwLcEtR2ShKJ4M7jjmeNRTOOd70P53LA2FEDT2YzORi1ilvjzOU6xgedMnmR+MDvsF9rYF85YEZBZj+XTi5Umav5yRnBGp0ai/5QmQJ+NEWSLNNcCwBVQsi2T4pg8vuc8BDAemFDzMSf/hkWBozJRlMj2724rMxg9xETJDUaXU2pOugee7yKYBpZp/lHXrVYmW6hlBxo4vuO7mHEjDdWXzd8RxD20AWDtUX839zpa7A+BM71foQyZzZhlYvkk8xNshHEMKJd2XMprUhgQGodPlk87yGQjG/JRFjlCOzrU8VkmE5Yc5EZ2vtCeiT9Z3Ja8ItbmDX+aGPueeAEAeBO8UI6XmEKJpk2laBjACsGzoXXahxyX3v1bWe7VqldpEBvi55tTaCSRaywjv7SzxwKv/EwTHm8dR6O5bpGuUX476+O4DAppX83hcLg+eHoWXTCiNKfjuP3dsAcNIolzdX9Vxf1nuPyiz1Gbqx0j7nZ9nu2+nqKH3f7h37baV4QU10W954p4LU5wLLLKxSOYMqKuDMRMkqXE/MLG5jOhDYHYHJW2+WfdaIKez9limzlGqUpXKkXGP5mu6wBnEhL4Nt+iMO1PcV16+KDD6T7EK8OVR8mZ4cvq5sLnJMruXbj1y0u1vv1mwgUqYucxwQj+hLT+xMvPbx2Zhh9AqKAs0gNbqXKVE5l+8MyYCIxM+bhI//8GkAqO6/xs7uIBQbWF7rQSekcIEt0rjyLQLZfP1PB5BFNAZEogi1yUDUNJPj8eakF+8/8VZvznTSfK34SHaMH7OreuJa9udB74eDJ+zt+uHcNjefbyPkwxar78Nkv5l/8p/jx+ZZ2m1qGB/UVpAPDo8oK4rlndNNCcTIPGxs5yTKtF2Wbozl4J/oIq16rrZm91vC2fxtOm8J9OUxCt4FNwcYSiNqYloFNXHdifuo33GOc4Y5G83ttXk+wN7WDDFMWVi4lPBaZwybfyQ90k0K0sgOI/P/64w7DIXhoz6AX2MSp5QwFxis1gUgnr6VhONYMgW60eV+S1nYmwdZ5UHqwvL+cx3XKOKb0Tg5PPq24QP/2/rEvJxZYw5GV5x9NcGuhQKLaSBu4Zd8d2Q4WdPsG5eiulwSmbLdvZK2I+9j5aQxsnpAlCs531ms4aRvwd2k3MN/R1C6M3QS32odWEO8/YSeLpmAu8DfU2frg1/Fwi8234zVlbH1MsLB4IeYMzxMBYhEBhlXG7BPFwKupoa6BBN+09jHmAIOVNMnXrJPucMamrz7YIQZSgHo7J11HWuL/UdzW4hDWeFEtkSqHYjr/yDsjpfLUm026JEIVVlk3SXUSyQ1pCqmMCjfV2FybSGtq/IpNzChjUERbKrghQrmZTnzLjLEWusMxcnIu80CcALPSWt5+aBT+PnyYL4jLo6w42wxoBv1zi3niAWD1THw7r6geRxABsGasDoLKk4MAmJA4Odh/YstTLE9KuLfxW9y7p17hGD+eU9ZF1LupmOpgNGTvzQ9KcbmnfADXY5Ll3k/9eBf3HbdlnPhKm8XtOjg3fCN4husjxSct0ggA3TO2xlwLTJiQiPiFjh4oOp1QpxU6WQfmZzTPlO1jtGyFKfsdv/ZrAgIeTvmlNDFQMLvY9mMNy4ZQvEF+3wHfADwBgGE14Do0hl9TZhzPs1MBKYOBcUxHEbF7GfNrNAilVIUjEiLoU00pNBM+x+cW781iuPqx/hjhi4R8+eC3DFXJi7wbBvVPMamTN8Hv99cw+V7w49/8LoGxPYYTijX4DwG56aqrEVIiiByS0EdUpG2Ix+4ORZiH+T5Iz8J3X3GSwBYmyq24aetoMM3kbOZG2Lrvh7wGym3wD+tZ4+aQUyndDmY6ANlUBbEwpsfyU0WT2lh1QrQ25AdYFL9vJgsHG9EkXSnbzamPd7Ceb1dErc4PuZhL86CkUigDCu52JmWGAGwCa2BT8y/r/6PzBbNe2YWeAeNJlMQSAbsuAdYs9S5yZEEakXWjhBgyT/h4nU5aJAs7OMN3bMp55RjhVQ/57guYnsfoqftfnbaT6+9XOti/lmPjjGrY40SCycjV1PZi/TPmTuLZyfesXSgbrAqQjpJhGfSwapj8MOeuxEwbfeRvLp2o5Bd+fc1GToJE4/bYC9aPnAMCYGu5/8bzu4z6fZzwGy2DS1Ng5X4Y5X9EXz7Lyh2S7JDwByyaCMkV4H2IsQc9hBCGLN/rnNluHS2+3NVS3l1EIQk+uMDdflNBp09r8MflH3et7q8U/Dn5l6VjfZ9efviTNFYLKA6PV/oORc4+ZeFMiYh5Zk9yy3NVjmRF1xGXZint3ZAWDVmCKF4eEW5rJgDHGudqT9RTR62NM6H2R0DcQ61K1u1Z1VPjetGvqbRx79arma1OLFL8n8ydDDAGg3KdKIpK3wh9Wcz+HlOs6ofNbFQALFObFPjUn9i4ad0Ni0ZE3FXk1mKOsKMnT2Nl7grbydsAiK2Alrl0mv/3JDL9owq5nXDPWmUS6Rs9IkKuss7q5ywE+u9bQkVGRut8Uq4hiHI41JYDPY3cTMM8iG9zONZr/npyQhbIUcN1ucZR8l8AAB3wfnNmC6c5NBMo4ZhfD4MONSSTxfGKSTdLMmGv6sRlbOoWSpiy1vwUolrJRKvOZsrsA6fkYtE2vwdjbMabB6LUY87f6249tTy/WktWofJRPmwXoOfMEGa44GAs548PvSsICkrc8QF0SpJs3wMiEUZqqgAAIviOhGbNS0kXolf4/rgFU5Cw3G2D14qIZTKzSUeKXtFB67gBinjnPMTDdpkgqq7Zi8sQDywkKkli6jcckYWXy523C5fMNcuUCqbZPGUyi2dQk+yY99kURYNSXqF56RbtRn3C0iE1jyw/jHcah1LOkDnDl31ULETW01Fch8vr2Iv1Wz9UXyHNYMpfI8Bgrg4RXyWEms/EFMREjQpdO4VYE8meWKhNm1QGm9OvtzS9sfbbXeYQr1AHItdA4AU4gQ9+saEPgjB9Yh3l8ukvNzS0ho+ry8j4MPoKFAQyRiJ6MXvwLkREzG4AAAAA==", pelican: "data:image/webp;base64,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", kestrel: "data:image/webp;base64,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", swift: "data:image/webp;base64,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", thunder: "data:image/webp;base64,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" };
+
+const KEY = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(ANSWER_DATA), c => c.charCodeAt(0))));
+
+const FLEET_TYPES = ['Glider', 'Light aircraft', 'Bush plane', 'Turboprop', 'Business jet', 'Military fast jet'];
+const PARTS = [
+  { id: 'a', short: 'Words', title: 'Words in context', skill: 'Vocabulary', intro: 'Each word is underlined in the article. Read the meaning, then type the word.', qs: [
+    { id: 'a1', type: 'text', prompt: 'An airplane with two sets of wings, one above the other.', ref: '¶4', hint: 'Look in ¶4. The prefix bi- means "two".' },
+    { id: 'a2', type: 'text', prompt: 'The force that pushes an aircraft forward.', ref: 'diagram', hint: 'Check the box called "How does a plane fly?". This force comes from the propeller or jet engine.' },
+    { id: 'a3', type: 'text', prompt: 'Far away from towns and cities, and hard to reach.', ref: '¶6', hint: 'In ¶6, bush pilots flew into this kind of community.' },
+    { id: 'a4', type: 'text', prompt: 'Faster than the speed of sound.', ref: '¶10', hint: 'In ¶10, the Avro Arrow was this kind of interceptor.' },
+    { id: 'a5', type: 'text', prompt: 'Rising columns of warm air that gliders ride to stay up.', ref: 'table', hint: 'Read the Glider row of the table.' },
+    { id: 'a6', type: 'text', prompt: 'Stopped a plan or project before it was finished.', ref: '¶10', hint: 'What did the government do to the Arrow program in 1959?' },
+  ] },
+  { id: 'b', short: 'Meaning', title: 'Reading for meaning', skill: 'Comprehension and inference', intro: 'Use details from the article. Paragraph numbers tell you where to look.', qs: [
+    { id: 'b1', type: 'text', prompt: 'In what year did the Silver Dart make the first powered, controlled flight in Canada?', ref: '¶3', hint: 'Look for the date in ¶3.', placeholder: 'a year' },
+    { id: 'b2', type: 'all', prompt: 'Name the three kinds of landing gear that a Beaver could be fitted with.', ref: '¶8', hint: 'Read ¶8 again. One is for runways, one is for water and one is for snow.', placeholder: 'three words, separated by commas' },
+    { id: 'b3', type: 'mc', prompt: 'Why was the 1929 flight by Wop May and Vic Horner so urgent?', ref: '¶7', hint: 'What had broken out near Fort Vermilion?', options: ['They were racing another pilot to Fort Vermilion.', 'People near Fort Vermilion needed medicine to fight diphtheria.', 'The mail for the North was weeks late.', 'They were testing the first Beaver.'] },
+    { id: 'b4', type: 'mc', prompt: 'In ¶2, the author says the first flight was "shorter than the wingspan of a modern jumbo jet." Why does the author make this comparison?', ref: '¶2', hint: 'Think about what the comparison helps you imagine.', options: ['To prove that jumbo jets are dangerous', 'To help readers picture how short the flight really was', 'To explain how the Wright brothers built their wings', 'To show that the Wright Flyer was a kind of jumbo jet'] },
+    { id: 'b5', type: 'mc', prompt: 'Which sentence best states the main idea of the section "Bush planes open the North" (¶6 to ¶8)?', ref: '¶6–¶8', hint: 'A main idea covers the whole section, not one detail.', options: ['Bush pilots enjoyed flying in very cold weather.', 'Bush planes connected remote northern communities with the rest of Canada.', 'The Beaver is the fastest plane ever built in Canada.', 'Diphtheria was a common disease in the 1920s.'] },
+    { id: 'b6', type: 'mc', prompt: 'According to ¶9, what problem did the jet engine solve?', ref: '¶9', hint: 'Read the first two sentences of ¶9.', options: ['Propellers lose efficiency as their tips get close to the speed of sound.', 'Propeller planes could not land on water.', 'Early planes were made of wood and fabric.', 'Jet fuel was cheaper than gasoline.'] },
+    { id: 'b7', type: 'mc', prompt: 'What was one effect of cancelling the Avro Arrow program?', ref: '¶10', hint: 'Look at the sentence right after the program was cancelled.', options: ['The Arrow became Canada\'s main fighter jet.', 'The Arrow was sold to another country.', 'Thousands of workers lost their jobs.', 'The Jetliner was built instead.'] },
+    { id: 'b8', type: 'text', prompt: 'Use the table. Which type of aircraft has no engine at all?', ref: 'table', hint: 'Read the Power column of the table.' },
+    { id: 'b9', type: 'text', num: true, prompt: 'About how many litres of water can a CL-415 scoop up in one pass?', ref: '¶13', hint: 'The number is in ¶13.', placeholder: 'a number' },
+    { id: 'b10', type: 'mc', prompt: 'Use the diagram. For a plane to climb, which force must be greater than its weight?', ref: 'diagram', hint: 'Which force pushes the plane up?', options: ['Drag', 'Lift', 'Thrust', 'Gravity'] },
+  ] },
+  { id: 'c', short: 'Features', title: 'Text features and structure', skill: 'How the article is built', intro: 'Writers organize information in different ways. Choose the best answer.', qs: [
+    { id: 'c1', type: 'mc', prompt: 'How is the section "Types of planes today" mainly organized?', ref: '¶12 and table', hint: 'The table puts several types side by side.', options: ['Chronological order (time order)', 'Compare and contrast', 'Problem and solution', 'Question and answer'] },
+    { id: 'c2', type: 'mc', prompt: 'How is ¶9 about the jet engine organized?', ref: '¶9', hint: 'The paragraph starts with something that was going wrong.', options: ['Problem and solution', 'Compare and contrast', 'Chronological order', 'Description of a place'] },
+    { id: 'c3', type: 'mc', prompt: 'Why does the box "How does a plane fly?" include a diagram?', ref: 'diagram', hint: 'What do the arrows show?', options: ['To show which way each of the four forces pushes', 'To show where the pilot sits', 'To list the dates of famous flights', 'To make the page more colourful'] },
+    { id: 'c4', type: 'mc', prompt: 'Which text feature would help you most to check the meaning of the word "turbine" quickly?', ref: 'end of article', hint: 'Which feature lists words and their meanings?', options: ['The title', 'The glossary', 'The table', 'The diagram'] },
+  ] },
+  { id: 'd', short: 'Timeline', title: 'Timeline', skill: 'Sequencing events', intro: 'Type a number from 1 (earliest) to 6 (latest) next to each event. Use the dates in the article.', qs: [
+    { id: 'd1', type: 'order', prompt: 'Put these events in order.', ref: '¶1–¶14', hint: 'Find the year of each event. Remember that 1783 comes before 1903.', items: ['The Silver Dart flies at Baddeck, Nova Scotia', 'The Wright Flyer lifts off at Kitty Hawk', 'The DHC-2 Beaver makes its first flight', 'Passengers drift over Paris in a hot-air balloon', 'The Avro Arrow makes its first flight', 'Harbour Air flies an all-electric Beaver'], points: 2 },
+  ] },
+  { id: 'e', short: 'Roots', title: 'Word study', skill: 'Prefixes and roots', intro: 'Many aviation words are built from Greek and Latin parts. Type your answer.', qs: [
+    { id: 'e1', type: 'text', prompt: 'The prefix bi- in biplane means ____.', ref: '¶4', hint: 'Think of a bicycle. How many wheels does it have?' },
+    { id: 'e2', type: 'text', prompt: 'The prefix super- in supersonic means ____.', ref: '¶10', hint: 'Supersonic planes go ____ the speed of sound. Think of the word superior.' },
+    { id: 'e3', type: 'text', prompt: 'The Greek root aero, found in aerospace and aeronautical, means ____.', ref: '¶5', hint: 'Airplanes fly through it.' },
+    { id: 'e4', type: 'text', prompt: 'The prefix trans- means "across." Write the word from ¶11 that means "across the Atlantic Ocean."', ref: '¶11', hint: 'Look at how Concorde\'s trip from London to New York is described.' },
+    { id: 'e5', type: 'text', prompt: 'The prefix mono- means "one." Write the word for an airplane with a single set of wings.', ref: '¶4', hint: 'It is the opposite of biplane.' },
+  ] },
+  { id: 'f', short: 'Conventions', title: 'Language conventions', skill: 'Grammar, spelling and capitals', intro: 'Type your answers. Spelling and capital letters count here.', qs: [
+    { id: 'f1', type: 'blanks', prompt: 'Homophones sound the same but have different meanings. Type plane or plain in each blank.', ref: '', hint: 'A plane is an aircraft. A plain is a large area of flat land.', parts: ['The pilot landed her ', ' on a flat, grassy ', '.'] },
+    { id: 'f2', type: 'blanks', prompt: 'Canada uses British-style spelling for many words. Type each word the Canadian way.', ref: '', hint: 'Canadian spelling often uses -our and -re endings.', labels: ['color', 'center', 'meter (a unit of length)'] },
+    { id: 'f3', type: 'select', prompt: 'Is each sentence simple, compound or complex?', ref: '', hint: 'Compound sentences join two complete sentences with a word like and, but or so. Complex sentences have a part that cannot stand alone, often starting with because, when or although.', rows: ['The Beaver first flew in 1947.', 'Batteries are heavy, so electric planes can only fly short distances.', 'Because the program cost so much, the government cancelled it.'], options: ['simple', 'compound', 'complex'] },
+    { id: 'f4', type: 'exact', prompt: 'Rewrite this sentence with capital letters where they belong: the avro arrow first flew near toronto in march 1958.', ref: '¶10', hint: 'Capitalize the first word, the name of the plane, the city and the month. End with a period.' },
+  ] },
+  { id: 'g', short: 'Fact or opinion', title: 'Fact or opinion', skill: 'Evaluating statements', intro: 'A fact can be checked. An opinion tells what someone thinks or feels.', qs: [
+    { id: 'g1', type: 'select', prompt: 'Choose Fact or Opinion for each statement.', ref: '', hint: 'Words like best, most beautiful and most exciting usually signal an opinion.', rows: ['The Silver Dart flew at Baddeck, Nova Scotia, in 1909.', 'The Avro Arrow was the most beautiful plane ever built.', 'More than 1,600 Beavers were built.', 'Electric planes are the most exciting invention of the century.'], options: ['Fact', 'Opinion'] },
+  ] },
+  { id: 'h', short: 'Fleet', title: 'Meet the FlyHigh fleet', skill: 'Applying what you read', intro: 'Here are five of the planes from the FlyHigh flight game. Use the table in the article to choose the type that matches each one.', qs: [
+    { id: 'h1', type: 'select', fleet: ['sparrow', 'kestrel', 'swift', 'pelican', 'thunder'], prompt: 'Choose the type of aircraft for each plane.', ref: 'table', hint: 'Look for propellers or jet engines, the number of engines, and what the plane is built to do.', rows: ['Sparrow: a two-seat trainer with one piston engine', 'Kestrel: a jet turbine turns its four-blade propeller', 'Swift: a small, fast jet that carries a few passengers', 'Pelican: two engines, a high wing and a big cargo door, ready for short gravel strips', 'Thunderbird: twin jet engines with afterburners'], options: FLEET_TYPES },
+  ] },
+  { id: 'i', short: 'Writing', title: 'Write about it', skill: 'Opinion paragraph', intro: 'Which development in flight do you think helped Canada the most? Write one paragraph. State your opinion, support it with at least two facts or details from the article, explain how they support your opinion, and finish with a concluding sentence.', qs: [
+    { id: 'i1', type: 'write', prompt: 'Your paragraph', ref: '', hint: '' },
+  ] },
+];
+
+// ---------------- state ----------------
+const STORE = 'flyhigh-kites-to-jets-v1';
+let S = { v: {}, tries: {}, shown: {}, result: {}, teacher: false };
+try { const raw = localStorage.getItem(STORE); if (raw) S = Object.assign(S, JSON.parse(raw)); } catch (e) { }
+let saveT = 0;
+function save() { clearTimeout(saveT); saveT = setTimeout(() => { try { localStorage.setItem(STORE, JSON.stringify(S)); } catch (e) { } }, 250); }
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+// ---------------- normalizing and checking ----------------
+function norm(s) {
+  return String(s || '').toLowerCase().replace(/[‘’]/g, "'").replace(/[“”"]/g, '').replace(/\s+/g, ' ').trim()
+    .replace(/^(a|an|the) /, '').replace(/[.!?,;:]+$/, '').trim();
+}
+function normNum(s) { return String(s || '').toLowerCase().replace(/about|approximately|around|roughly|litres?|liters?|\bl\b/g, '').replace(/[\s,  ]/g, '').replace(/\.$/, ''); }
+const K = id => KEY.a[id];
+function pointsFor(q) {
+  if (q.type === 'blanks') return (q.parts ? q.parts.length - 1 : q.labels.length);
+  if (q.type === 'select') return q.rows.length;
+  if (q.type === 'order') return q.points || 2;
+  if (q.type === 'write') return 0;
+  return 1;
+}
+// returns { score, max, cells: [bool...] | null, msg }
+function grade(q) {
+  const v = S.v, max = pointsFor(q);
+  switch (q.type) {
+    case 'text': {
+      const val = v[q.id] || '';
+      if (!val.trim()) return null;
+      const ok = q.num ? K(q.id).map(normNum).includes(normNum(val)) : K(q.id).map(norm).includes(norm(val));
+      let msg = '';
+      if (ok && KEY.note[q.id] && norm(val) === norm(KEY.note[q.id][0])) msg = KEY.note[q.id][1];
+      return { score: ok ? 1 : 0, max, msg };
+    }
+    case 'all': {
+      const val = norm(v[q.id] || '');
+      if (!val) return null;
+      const words = val.split(/[^a-z]+/);
+      const ok = K(q.id).every(group => group.some(w => words.includes(w)));
+      return { score: ok ? 1 : 0, max };
+    }
+    case 'mc': {
+      if (v[q.id] == null) return null;
+      return { score: +v[q.id] === K(q.id) ? 1 : 0, max };
+    }
+    case 'blanks': case 'select': {
+      const n = max, vals = [], ans = K(q.id);
+      for (let i = 0; i < n; i++) vals.push(v[q.id + '_' + i] || '');
+      if (vals.every(x => !String(x).trim())) return null;
+      const cells = vals.map((x, i) => q.type === 'select' ? x === ans[i] : (Array.isArray(ans[i]) ? ans[i] : [ans[i]]).map(norm).includes(norm(x)));
+      return { score: cells.filter(Boolean).length, max, cells };
+    }
+    case 'order': {
+      const ans = K(q.id), vals = q.items.map((_, i) => (v[q.id + '_' + i] || '').trim());
+      if (vals.every(x => !x)) return null;
+      const cells = vals.map((x, i) => +x === ans[i]);
+      const right = cells.filter(Boolean).length;
+      return { score: right === ans.length ? max : right >= ans.length - 2 ? 1 : 0, max, cells };
+    }
+    case 'exact': {
+      const val = String(v[q.id] || '').replace(/[“”"]/g, '').replace(/\s+/g, ' ').trim();
+      if (!val) return null;
+      const want = K(q.id);
+      if (val === want) return { score: 1, max };
+      const vw = val.replace(/[.]$/, '').split(' '), ww = want.replace(/[.]$/, '').split(' ');
+      let msg = '';
+      if (vw.length === ww.length && vw.every((w, i) => w.toLowerCase() === ww[i].toLowerCase())) {
+        const off = vw.filter((w, i) => w !== ww[i]);
+        msg = off.length ? `Check the capital letters in: ${off.join(', ')}.` : 'End your sentence with a period.';
+      } else msg = 'Copy the same words, and change only the capital letters and end punctuation.';
+      return { score: 0, max, msg };
+    }
+  }
+  return null;
+}
+function answerText(q) {
+  const a = K(q.id);
+  switch (q.type) {
+    case 'text': return a[0];
+    case 'all': return a.map(g => g[0]).join(', ');
+    case 'mc': return q.options[a];
+    case 'blanks': return a.map(x => Array.isArray(x) ? x[0] : x).join(' · ');
+    case 'select': return q.rows.map((r, i) => `${r.split(':')[0]} → ${a[i]}`).join(' · ');
+    case 'order': return q.items.map((t, i) => [a[i], t]).sort((x, y) => x[0] - y[0]).map(x => `${x[0]}. ${x[1]}`).join('  ');
+    case 'exact': return a;
+  }
+  return '';
+}
+
+// ---------------- rendering ----------------
+let qNo = 0;
+function render() {
+  const host = $('parts'), jump = $('jump');
+  let html = '';
+  for (const P of PARTS) {
+    jump.insertAdjacentHTML('beforeend', `<a href="#part-${P.id}" id="jump-${P.id}">${P.id.toUpperCase()} · ${esc(P.short)}</a>`);
+    html += `<section class="part wrap" id="part-${P.id}" aria-labelledby="h-${P.id}"><header><div class="skill">Part ${P.id.toUpperCase()} · ${esc(P.skill)}</div><h2 id="h-${P.id}">${esc(P.title)}</h2><p class="intro">${esc(P.intro)}</p></header><div class="qs">`;
+    for (const q of P.qs) html += renderQ(q);
+    html += `</div>${P.id !== 'i' ? `<div class="part-foot"><button class="btn ghost" type="button" data-checkpart="${P.id}">Check Part ${P.id.toUpperCase()}</button><span class="part-score" id="ps-${P.id}"></span></div>` : ''}</section>`;
+  }
+  jump.insertAdjacentHTML('beforeend', `<a href="#results">Results</a>`);
+  host.innerHTML = html;
+}
+function renderQ(q) {
+  const n = q.type === 'write' ? '' : `<span class="qnum">${(++qNo).toString().padStart(2, '0')}</span>`;
+  const ref = q.ref ? `<span class="ref">${esc(q.ref)}</span>` : '';
+  let body = '';
+  const lid = `p-${q.id}`;
+  switch (q.type) {
+    case 'text': case 'all': case 'exact':
+      body = `<div class="answer-row"><input type="text" id="in-${q.id}" data-q="${q.id}" aria-labelledby="${lid}" autocomplete="off" spellcheck="${q.type === 'exact' ? 'false' : 'true'}" placeholder="${esc(q.placeholder || 'Type your answer')}"></div>`;
+      break;
+    case 'mc':
+      body = `<div class="opts" role="radiogroup" aria-labelledby="${lid}">` + q.options.map((o, i) => `<label class="opt"><input type="radio" name="r-${q.id}" id="in-${q.id}-${i}" data-q="${q.id}" value="${i}"><span>${esc(o)}</span></label>`).join('') + `</div>`;
+      break;
+    case 'blanks':
+      if (q.parts) body = `<p class="sentence">` + q.parts.map((t, i) => esc(t) + (i < q.parts.length - 1 ? `<input type="text" id="in-${q.id}_${i}" data-q="${q.id}" data-i="${i}" autocomplete="off" aria-label="Blank ${i + 1}">` : '')).join('') + `</p>`;
+      else body = `<div class="rows">` + q.labels.map((t, i) => `<div class="row"><label class="txt" for="in-${q.id}_${i}">${esc(t)} →</label><input type="text" id="in-${q.id}_${i}" data-q="${q.id}" data-i="${i}" autocomplete="off" spellcheck="false"></div>`).join('') + `</div>`;
+      break;
+    case 'select':
+      body = `<div class="rows">` + q.rows.map((t, i) => `<div class="row${q.fleet ? ' fleet' : ''}">${q.fleet ? `<img src="${IMG[q.fleet[i]]}" alt="${esc(t.split(':')[0])} from the FlyHigh game" width="448" height="280" loading="lazy">` : ''}<label class="txt" for="in-${q.id}_${i}">${esc(t)}</label><select id="in-${q.id}_${i}" data-q="${q.id}" data-i="${i}"><option value="">Choose…</option>${q.options.map(o => `<option>${esc(o)}</option>`).join('')}</select></div>`).join('') + `</div>`;
+      break;
+    case 'order':
+      body = `<div class="rows">` + q.items.map((t, i) => `<div class="row order"><input type="text" inputmode="numeric" maxlength="1" id="in-${q.id}_${i}" data-q="${q.id}" data-i="${i}" aria-label="Order number for: ${esc(t)}"><label class="txt" for="in-${q.id}_${i}">${esc(t)}</label></div>`).join('') + `</div>`;
+      break;
+    case 'write':
+      return `<div class="q" id="q-${q.id}"><label class="prompt" id="${lid}" for="in-${q.id}">${esc(q.prompt)}</label>
+        <textarea id="in-${q.id}" data-q="${q.id}" placeholder="In my opinion, the most important development in flight for Canada was…"></textarea>
+        <div class="wc" id="wc">0 words · 0 sentences</div>
+        <ul class="checklist" id="crit">
+          <li data-c="opinion"><span class="tick">✓</span><span>I start with a topic sentence that states my opinion.</span></li>
+          <li data-c="words"><span class="tick">✓</span><span>My paragraph has at least 80 words and 6 sentences.</span></li>
+          <li data-c="evidence"><span class="tick">✓</span><span>I use at least two facts, dates or names from the article.</span></li>
+          <li data-c="links"><span class="tick">✓</span><span>I use linking words such as because, for example, as a result or also.</span></li>
+          <li data-c="caps"><span class="tick">✓</span><span>Every sentence starts with a capital letter and ends with punctuation.</span></li>
+          <li data-c="close"><span class="tick">✓</span><span>I finish with a concluding sentence, such as one starting "For these reasons" or "That is why".</span></li>
+          <li data-c="self1"><span class="tick">✓</span><label><input type="checkbox" id="self1" hidden> I explained how each piece of evidence supports my opinion. (Tap to tick.)</label></li>
+          <li data-c="self2"><span class="tick">✓</span><label><input type="checkbox" id="self2" hidden> I re-read my paragraph and fixed my spelling. (Tap to tick.)</label></li>
+        </ul>
+        <div class="actions"><button class="btn ghost" type="button" id="modelBtn" disabled>See an example paragraph</button><span class="wc" id="modelNote">Write at least 60 words to unlock the example.</span></div>
+        <p class="model" id="model" hidden></p></div>`;
+  }
+  return `<div class="q" id="q-${q.id}"><div class="qhead">${n}<p class="prompt" id="${lid}">${esc(q.prompt)}${ref}</p></div>${body}
+    <div class="actions"><button class="btn" type="button" data-check="${q.id}">Check</button><button class="btn quiet" type="button" data-show="${q.id}" hidden>Show the answer</button></div>
+    <p class="fb" id="fb-${q.id}" aria-live="polite"></p></div>`;
+}
+
+// ---------------- behaviour ----------------
+const ALLQ = PARTS.flatMap(P => P.qs.map(q => Object.assign(q, { part: P.id })));
+const QBY = Object.fromEntries(ALLQ.map(q => [q.id, q]));
+function restore() {
+  ['stuName', 'stuClass', 'stuDate'].forEach(id => { if (S.v[id]) $(id).value = S.v[id]; });
+  for (const q of ALLQ) {
+    if (q.type === 'mc') { if (S.v[q.id] != null) { const r = $(`in-${q.id}-${S.v[q.id]}`); if (r) r.checked = true; } }
+    else if (['blanks', 'select', 'order'].includes(q.type)) { const n = q.type === 'order' ? q.items.length : pointsFor(q); for (let i = 0; i < n; i++) { const el = $(`in-${q.id}_${i}`); if (el && S.v[q.id + '_' + i] != null) el.value = S.v[q.id + '_' + i]; } }
+    else { const el = $(`in-${q.id}`); if (el && S.v[q.id] != null) el.value = S.v[q.id]; }
+    if (S.result[q.id] != null || S.shown[q.id]) showResult(q, false);
+  }
+  if (S.v.self1) $('self1').checked = true;
+  if (S.v.self2) $('self2').checked = true;
+  updateWriting(); updateTotals();
+  if (S.teacher) teacherView();
+}
+function showResult(q, fromCheck) {
+  const card = $(`q-${q.id}`), fb = $(`fb-${q.id}`), showBtn = card.querySelector('[data-show]');
+  const g = grade(q);
+  card.classList.remove('right', 'wrong');
+  card.querySelectorAll('.cell-ok, .cell-no').forEach(e => e.classList.remove('cell-ok', 'cell-no'));
+  if (S.shown[q.id]) {
+    fb.className = 'fb ans'; fb.innerHTML = `<b>Answer:</b> ${esc(answerText(q))}${KEY.why[q.id] ? `<br>${esc(KEY.why[q.id])}` : ''}`;
+    if (showBtn) showBtn.hidden = true;
+    return;
+  }
+  if (!g) { if (fromCheck) { fb.className = 'fb hint'; fb.textContent = 'Type or choose an answer first.'; } return; }
+  if (g.cells) g.cells.forEach((ok, i) => { const el = $(`in-${q.id}_${i}`); if (el) el.classList.add(ok ? 'cell-ok' : 'cell-no'); });
+  const full = g.score === g.max;
+  S.result[q.id] = g.score;
+  if (full) {
+    card.classList.add('right'); fb.className = 'fb ok';
+    fb.innerHTML = `<b>Correct!</b> ${esc(g.msg || KEY.why[q.id] || '')}`;
+    if (showBtn) showBtn.hidden = true;
+  } else {
+    card.classList.add('wrong');
+    const tries = S.tries[q.id] || 0;
+    fb.className = 'fb no';
+    const part = g.max > 1 ? `You have ${g.score} of ${g.max} right. ` : 'Not yet. ';
+    fb.innerHTML = `<b>${part}</b>${esc(g.msg || '')} <span>Hint: ${esc(q.hint)}</span>${tries >= 2 ? '' : ' Try again.'}`;
+    if (showBtn) showBtn.hidden = tries < 2;
+  }
+}
+function check(id) {
+  const q = QBY[id];
+  if (!q || S.shown[id]) return;
+  const g = grade(q);
+  if (g && g.score < g.max) S.tries[id] = (S.tries[id] || 0) + 1;
+  showResult(q, true); updateTotals(); save();
+}
+function updateTotals() {
+  let tot = 0, max = 0, answered = 0, count = 0;
+  const per = {};
+  for (const q of ALLQ) {
+    const m = pointsFor(q); if (!m) continue;
+    count++;
+    const got = S.shown[q.id] ? 0 : (S.result[q.id] || 0);
+    if (S.result[q.id] != null || S.shown[q.id]) answered++;
+    tot += got; max += m;
+    per[q.part] = per[q.part] || { got: 0, max: 0, done: 0, n: 0 };
+    per[q.part].got += got; per[q.part].max += m; per[q.part].n++;
+    if (S.result[q.id] != null || S.shown[q.id]) per[q.part].done++;
+  }
+  $('gaugeScore').textContent = tot; $('gaugeMax').textContent = max;
+  $('gaugeFill').style.width = (max ? tot / max * 100 : 0) + '%';
+  $('totalScore').textContent = tot; $('totalMax').textContent = max;
+  $('answeredLine').textContent = `${answered} of ${count} questions checked`;
+  $('byParts').innerHTML = PARTS.filter(P => per[P.id]).map(P => `<li><span>Part ${P.id.toUpperCase()} · ${esc(P.title)}</span><b>${per[P.id].got} / ${per[P.id].max}</b></li>`).join('');
+  for (const P of PARTS) {
+    const ps = $(`ps-${P.id}`), r = per[P.id];
+    if (ps && r) ps.textContent = r.done ? `${r.got} of ${r.max} points` : '';
+    const j = $(`jump-${P.id}`); if (j && r) j.classList.toggle('done', r.done === r.n);
+  }
+  return { tot, max };
+}
+
+// ---------------- writing checklist ----------------
+const EVIDENCE = ['silver dart', 'mccurdy', 'baddeck', 'bell', 'wright', 'kitty hawk', 'beaver', 'wop may', 'horner', 'fort vermilion', 'diphtheria', 'macgill', 'hurricane', 'thunder bay', 'fort william', 'arrow', 'jetliner', 'comet', 'cl-215', 'cl-415', 'water bomber', 'harbour air', 'electric', 'twin otter', 'dash 8', 'a220', 'mirabel', 'cf-18', 'concorde', '747', 'de havilland', 'bush pilot', 'bush plane', 'montgolfier'];
+function updateWriting() {
+  const ta = $('in-i1'); if (!ta) return;
+  const t = ta.value.trim(), low = t.toLowerCase();
+  const words = t ? t.split(/\s+/).length : 0;
+  const sents = t ? t.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 1) : [];
+  $('wc').textContent = `${words} word${words === 1 ? '' : 's'} · ${sents.length} sentence${sents.length === 1 ? '' : 's'}`;
+  const ev = new Set(); EVIDENCE.forEach(k => { if (low.includes(k)) ev.add(k); });
+  (t.match(/\b(17|18|19|20)\d\d\b/g) || []).forEach(y => ev.add(y));
+  const linkWords = ['because', 'since', 'for example', 'for instance', 'as a result', 'therefore', 'also', 'in addition', 'this shows', 'so that', 'which meant', 'this means'];
+  const links = linkWords.filter(w => new RegExp('\\b' + w + '\\b').test(low)).length;
+  const first = sents[0] ? sents[0].toLowerCase() : '';
+  const met = {
+    opinion: /\b(i think|i believe|in my opinion|i feel|my opinion|the most important|helped canada the most|best)\b/.test(first),
+    words: words >= 80 && sents.length >= 6,
+    evidence: ev.size >= 2,
+    links: links >= 2,
+    caps: sents.length >= 2 && sents.every(s => /^["'(]?[A-Z0-9]/.test(s.trim())) && /[.!?]["')]?$/.test(t),
+    close: sents.length >= 3 && /\b(in conclusion|for these reasons|that is why|this is why|overall|to sum up|in the end|in summary|all in all)\b/.test(sents[sents.length - 1].toLowerCase()),
+    self1: $('self1').checked, self2: $('self2').checked,
+  };
+  document.querySelectorAll('#crit li').forEach(li => li.classList.toggle('met', !!met[li.dataset.c]));
+  const unlocked = words >= 60;
+  $('modelBtn').disabled = !unlocked;
+  $('modelNote').textContent = unlocked ? '' : 'Write at least 60 words to unlock the example.';
+  S.writing = { words, sentences: sents.length, met: Object.values(met).filter(Boolean).length };
+}
+
+// ---------------- teacher view, copy, reset ----------------
+function teacherView() {
+  S.teacher = true;
+  for (const q of ALLQ) if (pointsFor(q)) { const fb = $(`fb-${q.id}`); if (fb && !S.shown[q.id]) { fb.className = 'fb ans'; fb.innerHTML = `<b>Answer:</b> ${esc(answerText(q))}`; } }
+  $('teacherBtn').hidden = true; $('teacherConfirm').hidden = true;
+  save();
+}
+function summaryText() {
+  const { tot, max } = updateTotals();
+  const lines = [`From Kites to Jets: Grade 7 reading worksheet`, `Name: ${$('stuName').value}`, `Class: ${$('stuClass').value}`, `Date: ${$('stuDate').value}`, `Score: ${tot} / ${max}`];
+  const revealed = ALLQ.filter(q => S.shown[q.id]).length;
+  lines.push(`Answers revealed: ${revealed}${S.teacher ? ' (teacher view was opened)' : ''}`, '');
+  let n = 0;
+  for (const P of PARTS) {
+    lines.push(`Part ${P.id.toUpperCase()}: ${P.title}`);
+    for (const q of P.qs) {
+      if (q.type === 'write') { lines.push(`Paragraph (${S.writing ? S.writing.words : 0} words, ${S.writing ? S.writing.met : 0} of 8 success criteria met):`, $('in-i1').value.trim() || '(not written)', ''); continue; }
+      n++;
+      let a;
+      if (q.type === 'mc') a = S.v[q.id] != null ? q.options[S.v[q.id]] : '';
+      else if (['blanks', 'select', 'order'].includes(q.type)) { const c = q.type === 'order' ? q.items.length : pointsFor(q); a = Array.from({ length: c }, (_, i) => S.v[q.id + '_' + i] || '_').join(' | '); }
+      else a = S.v[q.id] || '';
+      const st = S.shown[q.id] ? 'revealed' : S.result[q.id] != null ? `${S.result[q.id]}/${pointsFor(q)}` : 'not checked';
+      lines.push(`${String(n).padStart(2, '0')}. ${a || '(blank)'}  [${st}]`);
+    }
+    lines.push('');
+  }
+  return lines.join('\n');
+}
+function status(msg) { $('status').textContent = msg; clearTimeout(status.t); status.t = setTimeout(() => { $('status').textContent = ''; }, 5000); }
+
+document.addEventListener('input', e => {
+  const el = e.target;
+  if (['stuName', 'stuClass', 'stuDate'].includes(el.id)) { S.v[el.id] = el.value; save(); return; }
+  if (el.id === 'self1' || el.id === 'self2') { S.v[el.id] = el.checked; updateWriting(); save(); return; }
+  const id = el.dataset && el.dataset.q; if (!id) return;
+  const q = QBY[id];
+  if (q.type === 'mc') S.v[id] = +el.value;
+  else if (el.dataset.i != null) S.v[id + '_' + el.dataset.i] = el.value;
+  else S.v[id] = el.value;
+  if (q.type === 'write') updateWriting();
+  save();
+});
+document.addEventListener('change', e => { if (e.target.id === 'self1' || e.target.id === 'self2') { S.v[e.target.id] = e.target.checked; updateWriting(); save(); } });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.matches && e.target.matches('input[type="text"][data-q]')) { e.preventDefault(); check(e.target.dataset.q); }
+});
+document.addEventListener('click', e => {
+  const b = e.target.closest('button'); if (!b) return;
+  if (b.dataset.check) check(b.dataset.check);
+  else if (b.dataset.show) { S.shown[b.dataset.show] = true; showResult(QBY[b.dataset.show], false); updateTotals(); save(); }
+  else if (b.dataset.checkpart) { PARTS.find(P => P.id === b.dataset.checkpart).qs.forEach(q => { if (grade(q)) check(q.id); }); }
+  else if (b.dataset.read) readAloud(b);
+  else if (b.id === 'checkAll') { let n = 0; ALLQ.forEach(q => { if (pointsFor(q) && grade(q) && S.result[q.id] == null) { check(q.id); n++; } }); status(n ? `Checked ${n} more answer${n === 1 ? '' : 's'}.` : 'Every answered question has already been checked.'); }
+  else if (b.id === 'copyAnswers') {
+    const txt = summaryText(), box = $('copyBox');
+    box.value = txt; box.hidden = false;
+    const fallback = () => { box.focus(); box.select(); status('Your answers are selected below. Press Ctrl+C (or Cmd+C) to copy them.'); };
+    try { navigator.clipboard.writeText(txt).then(() => status('Copied! Paste your answers into your class page or an email to your teacher.'), fallback); } catch (err) { fallback(); }
+  }
+  else if (b.id === 'printBtn') window.print();
+  else if (b.id === 'resetBtn') { $('resetConfirm').hidden = false; }
+  else if (b.id === 'resetNo') { $('resetConfirm').hidden = true; }
+  else if (b.id === 'resetYes') { try { localStorage.removeItem(STORE); } catch (err) { } S = { v: {}, tries: {}, shown: {}, result: {}, teacher: false }; location.hash = ''; location.reload(); }
+  else if (b.id === 'teacherBtn') { $('teacherConfirm').hidden = false; }
+  else if (b.id === 'teacherNo') { $('teacherConfirm').hidden = true; }
+  else if (b.id === 'teacherYes') { teacherView(); }
+  else if (b.id === 'modelBtn') { const m = $('model'); m.textContent = KEY.model; m.hidden = !m.hidden; b.textContent = m.hidden ? 'See an example paragraph' : 'Hide the example'; }
+});
+
+// ---------------- read aloud ----------------
+let speaking = null;
+function readAloud(btn) {
+  if (!('speechSynthesis' in window)) return;
+  const id = btn.dataset.read;
+  speechSynthesis.cancel();
+  document.querySelectorAll('.listen').forEach(x => x.setAttribute('aria-pressed', 'false'));
+  if (speaking === id) { speaking = null; return; }
+  const sec = document.querySelector(`[data-sec="${id}"]`), extra = id === 's-types' ? document.querySelector('[data-sec="s-types2"]') : null;
+  const text = (sec ? sec.innerText : '') + (extra ? ' ' + extra.innerText : '');
+  const u = new SpeechSynthesisUtterance(text.replace(/¶\d+/g, ''));
+  const v = speechSynthesis.getVoices().find(v => /en[-_]CA/i.test(v.lang)) || speechSynthesis.getVoices().find(v => /^en/i.test(v.lang));
+  if (v) u.voice = v;
+  u.lang = v ? v.lang : 'en-CA'; u.rate = 0.95;
+  u.onend = u.onerror = () => { btn.setAttribute('aria-pressed', 'false'); speaking = null; };
+  btn.setAttribute('aria-pressed', 'true'); speaking = id;
+  speechSynthesis.speak(u);
+}
+
+render();
+restore();
+if (!('speechSynthesis' in window)) document.querySelectorAll('.listen').forEach(b => b.hidden = true);
+try { if (window.self === window.top) $('printBtn').hidden = false; } catch (e) { }
+</script>
+</body>
+</html>

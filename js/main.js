@@ -103,6 +103,7 @@
     renderer.shadowMap.enabled = !!Q.shadows;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 
+    FH.renderer = renderer; // used to build the reflection map for the aircraft
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(62, Math.max(1, innerWidth) / Math.max(1, innerHeight), 2.5, 40000);
 

@@ -113,10 +113,7 @@
       if (m.crates <= 0) return;
       if (ac.agl > (g.rookie ? 460 : 400)) { FH.UI.toast(g.rookie ? '⬇ Too high! Fly lower than 1,500 feet.' : '⬇ Too high — descend below 1,000 ft AGL (1,300 ft max).', 'bad'); return; }
       m.crates--;
-      const grp = new THREE.Group();
-      grp.add(new THREE.Mesh(new THREE.BoxGeometry(2.2, 2.2, 2.2), FH.lam(0x9a6a3a)));
-      const chute = new THREE.Mesh(new THREE.SphereGeometry(5, 12, 6, 0, Math.PI * 2, 0, Math.PI / 2), FH.lam([0xff5a5a, 0xffd23f, 0x4aa3ff][m.crates % 3], { side: THREE.DoubleSide }));
-      chute.position.y = 8; chute.visible = false; grp.add(chute);
+      const crate = FH.Models.supplyCrate([0xff5a5a, 0xffd23f, 0x4aa3ff][m.crates % 3]), grp = crate.group, chute = crate.chute;
       grp.position.copy(ac.pos); g.scene.add(grp);
       m.boxes.push({ p: ac.pos.clone().add(new THREE.Vector3(0, -2, 0)), v: ac._f.clone().multiplyScalar(ac.speed), t: 0, grp, chute, landed: false });
       FH.Audio.sfx('whoosh');
@@ -313,8 +310,9 @@
     accept(g, m) {
       const ac = g.ac, w = g.world, def = FH.planeById(ac.st.maxSpeed > 120 ? 'swift' : 'bluebird');
       const b = def.build(0xffc93c);
-      m.lead = { model: b.group, props: b.props, pos: new THREE.Vector3(), hdg: ac.hdg, spd: Math.min(ac.st.maxSpeed * 0.68, 95), alt: 0, wp: null, orbit: true, e: new THREE.Euler(), bank: 0, smokeT: 0 };
+      m.lead = { model: b.group, rig: b, props: b.props, pos: new THREE.Vector3(), hdg: ac.hdg, spd: Math.min(ac.st.maxSpeed * 0.68, 95), alt: 0, wp: null, orbit: true, e: new THREE.Euler(), bank: 0, smokeT: 0 };
       const L = m.lead;
+      if (b.setGear) { b.gearF = 0; b.setGear(0); }
       L.cx = ac.pos.x; L.cz = ac.pos.z; L.oa = 0;
       L.alt = Math.max(w.maxHeightAround(ac.pos.x, ac.pos.z, 900), 0) + 280;
       L.pos.set(ac.pos.x + 700, L.alt, ac.pos.z);
@@ -360,7 +358,7 @@
       L.bank += (U.clamp(turn / dt * 0.06, -0.6, 0.6) - L.bank) * Math.min(1, dt * 2);
       L.model.position.copy(L.pos);
       L.model.quaternion.setFromEuler(L.e.set(Math.atan2(dy / dt, spd), -L.hdg * D2R, -L.bank, 'YXZ'));
-      (L.props || []).forEach(p => { p.rotation.z += dt * 40; });
+      FH.animateRig(L.rig, dt, { spin: 60, eff: 0.75, fuel: true, ctl: { p: 0, r: U.clamp(turn / dt * 0.1, -0.6, 0.6), y: 0 }, gear: 0 });
       m.label.position.set(L.pos.x, L.pos.y + 14, L.pos.z);
       // coloured smoke so it is easy to follow
       if (!L.orbit) {

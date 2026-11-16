@@ -6,8 +6,9 @@
     constructor(def, upg, paintHex, opts) {
       this.def = def; this.upg = upg; this.assist = !!opts.assist; this.fuelMult = opts.fuelMult || 1;
       this.computeStats();
-      const b = def.build(paintHex);
+      const b = this.rig = def.build(paintHex);
       this.model = b.group; this.props = b.props; this.flames = b.flames; this.paintMats = b.paint;
+      this.ctl = { p: 0, r: 0, y: 0 }; this.gearDown = 1;
       this.model.traverse(o => { if (o.isMesh) { o.castShadow = !!opts.shadows; } });
       this.pos = new THREE.Vector3(); this.quat = new THREE.Quaternion();
       this.speed = 0; this.sink = 0; this.throttle = 0; this.eff = 0; this.onGround = true; this.fuel = 1;
@@ -25,20 +26,22 @@
       };
       this.st.takeoff = this.st.stall * 1.12;
     }
-    setPaint(hex) { this.paintMats.forEach(m => m.color.setHex(hex)); }
+    setPaint(hex) { this.paintMats.forEach(m => m.color.setHex(hex)); if (this.rig.repaint) this.rig.repaint(hex); }
+    // put the landing gear straight down (on the ground) or up (starting in the air)
+    snapGear(down) { this.gearDown = down ? 1 : 0; this.rig.gearF = this.gearDown; if (this.rig.setGear) this.rig.setGear(this.gearDown); }
     place(x, z, hdgDeg, world) {
       const h = Math.max(world.heightAt(x, z), 0);
       this.pos.set(x, h + this.st.gear, z);
       this.gHdg = hdgDeg * D2R;
       this.quat.setFromAxisAngle(new THREE.Vector3(0, 1, 0), -this.gHdg);
       this.speed = 0; this.sink = 0; this.throttle = 0; this.onGround = true; this.crashed = false; this.vs = 0; this.powerLoss = 0;
-      this.updateAngles(); this.sync();
+      this.updateAngles(); this.snapGear(true); this.sync();
     }
     placeAir(x, y, z, hdgDeg, speed) {
       this.pos.set(x, y, z); this.gHdg = hdgDeg * D2R;
       this.quat.setFromAxisAngle(new THREE.Vector3(0, 1, 0), -this.gHdg);
       this.speed = speed; this.throttle = 0.7; this.onGround = false; this.crashed = false; this.sink = 0;
-      this.updateAngles(); this.sync();
+      this.updateAngles(); this.snapGear(false); this.sync();
     }
     updateAngles() {
       const q = this.quat;
@@ -82,6 +85,7 @@
         if (this.agl < 14 && this.vs < -1.5 && this.pitchA < 0.12) pIn = Math.max(pIn, 0.5);
       }
       if (this.upY < 0) pIn = pIn; // inverted: controls stay the same (no assist)
+      this.ctl.p = pIn; this.ctl.r = rIn; this.ctl.y = yIn; // shown by the moving control surfaces
       this._e.set(pIn * st.pitch * auth * dt, -yIn * st.yaw * auth * dt, -rIn * st.roll * auth * dt, 'XYZ');
       this._q.setFromEuler(this._e); q.multiply(this._q);
       // coordinated turn from bank
@@ -125,6 +129,7 @@
       const st = this.st;
       const steer = U.clamp(inp.roll + inp.yaw, -1, 1);
       const steerRate = steer * 0.75 * U.clamp(1.3 - this.speed / (st.takeoff * 1.4), 0.2, 1);
+      this.ctl.p = inp.pitch; this.ctl.r = inp.roll; this.ctl.y = steer;
       if (this.speed > 0.3 || Math.abs(eff) > 0.05) this.gHdg += steerRate * dt;
       const drag = st.accel * Math.pow(this.speed / st.maxSpeed, 2);
       const friction = this.speed > 0.05 ? 0.4 : 0;
@@ -147,17 +152,10 @@
 
     animate(dt) {
       const spin = this.fuel > 0 ? 18 + this.eff * 70 : Math.max(0, this.speed * 0.3);
-      this.propAngle += spin * dt;
-      for (const p of this.props) {
-        p.userData.spinner.rotation.z = this.propAngle;
-        const d = p.children[1];
-        if (d) d.material.opacity = spin > 30 ? 0.18 : 0;
-      }
-      for (const f of this.flames) {
-        const s = this.fuel > 0 ? 0.25 + this.eff * 0.9 : 0;
-        f.scale.set(0.6 + this.eff * 0.5, 0.6 + this.eff * 0.5, s + Math.random() * 0.08 * this.eff);
-        f.visible = s > 0.01;
-      }
+      // retractable gear folds away after the climb-out and comes down again for the approach
+      if (this.onGround || this.agl < 70) this.gearDown = 1;
+      else if (this.agl > 110) this.gearDown = 0;
+      FH.animateRig(this.rig, dt, { spin, eff: this.eff, fuel: this.fuel > 0, ctl: this.ctl, gear: this.gearDown });
       this.sync();
     }
     sync() { this.model.position.copy(this.pos); this.model.quaternion.copy(this.quat); }
